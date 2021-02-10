@@ -18,7 +18,62 @@ const users = [
   },
 ];
 
-const repositories = [];
+const repositories = [
+  {
+    name: "greys-anatoy-lorm-ipsum-generator",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit!",
+    technologies: [
+      "netlify",
+      " jamstack",
+      " lorem-ipsum-generator",
+      " medical",
+      " serverless",
+      " react",
+    ],
+    extra: ["Javascript", 8, 3, "1 issue needs help", "Updated"],
+  },
+  {
+    name: "how-many-days-until",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit!",
+    technologies: [" react ", " countdown ", " hacktoberfest"],
+    extra: ["Javascript ", " 6 ", " 33 ", " Updated 19 days ago"],
+  },
+  {
+    name: "httiriri",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit!",
+    technologies: [
+      "http ",
+      " status-codes",
+      " gifs ",
+      " rihanna ",
+      " hacktoberfest",
+    ],
+    extra: [
+      "Typescript ",
+      " 37 ",
+      " 22 ",
+      " 4 issues need help",
+      " Updated 27 days ago",
+    ],
+  },
+  {
+    name: "ambition-fund-website",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit!",
+    technologies: ["donation", " landing-page"],
+    extra: [
+      "Javascript ",
+      " 7 ",
+      " 6 ",
+      " MIT License",
+      " 3 issues need help",
+      " Updated on Dec 12, 2020",
+    ],
+  },
+];
 
 const team = [
   {
@@ -122,6 +177,32 @@ const teamBuilder = (taco) => {
   });
   printToDom("#team-members", domString);
 };
+
+const repoBuilder = (taco) => {
+  domString = "";
+  taco.forEach((item, i) => {
+    domString += `<div class="card" style="height: 10em width: 18rem; id=${i}">
+    <div class="card-body">
+      <h5 class="card-title" id='card-title'>${item.name}</h5>
+      <p class="card-text" id="card-text">${item.description}</p>
+      <p class="card-link" id="link1">${item.technologies}</p>
+      <br>
+       <a href="#" class="card-link" id="link1">${item.technologies}</a>
+      <br>
+       <a href="#" class="card-link" id="link2">${item.extra}</a>
+      <label class="btn btn-secondary">
+    <input type="radio" name="options" id="option2" autocomplete="off"> Star
+  </label>
+    </div>
+  </div>
+    `;
+  });
+  const repo = document.querySelector('#repo');
+  if (repo) {
+    printToDom("#repo", domString);
+  }
+  // printToDom("#repo", domString);
+};
 // GRAB FORM INFO
 
 // BUTTON EVENTS
@@ -130,6 +211,7 @@ const teamBuilder = (taco) => {
 const init = () => {
   userBuilder(users);
   teamBuilder(team);
+  repoBuilder(repositories);
 };
 
 init();
