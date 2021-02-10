@@ -18,7 +18,54 @@ const users = [
   },
 ];
 
-const repositories = [];
+const repositories = [
+  {
+    name: "greys-anatoy-lorm-ipsum-generator",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
+    technologies: [
+      "netlify",
+      "jamstack",
+      "lorem-ipsum-generator",
+      "medical",
+      "serverless",
+      "react",
+    ],
+    extra: ["Javascript", 8, 3, "1 issue needs help", "Updated"],
+    pinned: true,
+  },
+  {
+    name: "how-many-days-until",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
+    technologies: ["react", "countdown", "hacktoberfest"],
+    extra: ["Javascript", 6, 33, "Updated 19 days ago"],
+    pinned: true,
+  },
+  {
+    name: "httiriri",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
+    technologies: ["http", "status-codes", "gifs", "rihanna", "hacktoberfest"],
+    extra: ["Typescript", 37, 22, "4 issues need help", "Updated 27 days ago"],
+    pinned: false,
+  },
+  {
+    name: "ambition-fund-website",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
+    technologies: ["donation", "landing-page"],
+    extra: [
+      "Javascript",
+      7,
+      6,
+      "MIT License",
+      "3 issues need help",
+      "Updated on Dec 12, 2020",
+    ],
+    pinned: false,
+  },
+];
 
 const team = [
   {
@@ -120,16 +167,80 @@ const teamBuilder = (taco) => {
                     </div>
                   </div>`;
   });
-  printToDom("#team-members", domString);
+  const teamMembers = document.querySelector("#team-members");
+  if (teamMembers) {
+    printToDom("#team-members", domString);
+  }
+};
+
+// FUNCTION FOR OVERVIEW PAGE
+const pinnedBuilder = (taco) => {
+  let pinnedCard = "";
+  taco.forEach((item, i) => {
+    if (item.pinned === true) {
+      pinnedCard += `<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${item.name}</h5>
+      <p class="card-text">${item.description}.</p>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>`;
+    }
+  });
+  const pinnedRepoHouses = document.querySelector("#pinnedRepoHouse");
+  if (pinnedRepoHouses) {
+    printToDom("#pinnedRepoHouse", pinnedCard);
+  }
+};
+
+//POPULATE OVERVIEW FORM DROPDOWN
+const populatePinned = (taco) => {
+  let pinnedText = "";
+  taco.forEach((item, i) => {
+    if (item.pinned === false) {
+      pinnedText += `<option value=${item.name}>${item.name}</option>`;
+    }
+  });
+  const getPinned = document.querySelector("#getPinned");
+  if (getPinned) {
+    printToDom("#getPinned", pinnedText);
+  }
 };
 // GRAB FORM INFO
 
+//FUNCTION FOR OVERVIEW PAGE
+const isPinned = (e) => {
+  e.preventDefault();
+  let buttonType = e.target.id;
+  const makePinned = document.querySelector("#getPinned").value;
+
+  if (buttonType === "submit-pin") {
+    console.log("submit");
+    repositories.forEach((item, i) => {
+      if (item.name === makePinned) {
+        item.pinned = true;
+      }
+    });
+    pinnedBuilder(repositories);
+  }
+};
+
 // BUTTON EVENTS
+const handleButtonClick = (e) => {
+  const submitPin = document.querySelector("#submit-pin");
+  if (submitPin) {
+    document.querySelector("#submit-pin").addEventListener("click", isPinned);
+  }
+};
 
 // INIT
 const init = () => {
   userBuilder(users);
   teamBuilder(team);
+  populatePinned(repositories);
+  pinnedBuilder(repositories);
+  handleButtonClick();
 };
 
 init();
