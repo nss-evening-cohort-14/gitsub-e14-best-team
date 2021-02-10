@@ -5,7 +5,7 @@ body {
 
 .navbar {
   background-color: #0d1117;
-  border: 1px solid #c6cfd7;
+  /* border: 1px solid #c6cfd7; */
 }
 
 .navbar a {
@@ -24,4 +24,32 @@ footer ul {
 .form-style {
   background-color: #0d1117;
   color:#c6cfd7;
+}
+
+.team-member {
+  width: 200px;
+  text-align: center;
+}
+
+.card, .list-group-item {
+  background-color: #0d1117;
+  border: 1px solid #353535;
+}
+
+.card {
+  margin: auto;
+}
+
+button {
+  margin-top: 25px;
+}
+
+#form {
+  border: 1px solid #353535;
+  padding: 30px;
+}
+
+#team-members {
+  padding-left: 0;
+  padding-right: 0;
 }
