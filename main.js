@@ -1,5 +1,3 @@
-
-
 // ARRAY FOR USER SECTION
 const users = [
   {
@@ -22,7 +20,6 @@ const repositories = [
   {
     name: "greys-anatoy-lorm-ipsum-generator",
     description:
-
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: [
       "netlify",
@@ -38,7 +35,6 @@ const repositories = [
   {
     name: "how-many-days-until",
     description:
-
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: ["react", "countdown", "hacktoberfest"],
     extra: ["Javascript", 6, 33, "Updated 19 days ago"],
@@ -47,7 +43,6 @@ const repositories = [
   {
     name: "httiriri",
     description:
-
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: ["http", "status-codes", "gifs", "rihanna", "hacktoberfest"],
     extra: ["Typescript", 37, 22, "4 issues need help", "Updated 27 days ago"],
@@ -56,7 +51,6 @@ const repositories = [
   {
     name: "ambition-fund-website",
     description:
-
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: ["donation", "landing-page"],
     extra: [
@@ -84,65 +78,67 @@ const team = [
     username: "robertncole1",
     website: "https://robcolecreative.com",
     twitter: "none",
-    imageUrl: "https://avatars.githubusercontent.com/u/76854545?s=460&u=f5424c7a737a6e847fb0415886a6857f56f15bc7&v=4",
+    imageUrl:
+      "https://avatars.githubusercontent.com/u/76854545?s=460&u=f5424c7a737a6e847fb0415886a6857f56f15bc7&v=4",
   },
   {
     name: "Sara Schoonover",
     username: "username",
     website: "https://saraiscool.com",
     twitter: "saraschoon",
-    imageUrl: "https://avatars.githubusercontent.com/u/25774314?s=460&u=f02c0b3ec9ec2c2cf3ed4ecae25d6d793048f020&v=4",
+    imageUrl:
+      "https://avatars.githubusercontent.com/u/25774314?s=460&u=f02c0b3ec9ec2c2cf3ed4ecae25d6d793048f020&v=4",
   },
 ];
 
 const projects = [
   {
-    title: 'my-dream',
-    description: 'My dream project',
+    title: "my-dream",
+    description: "My dream project",
     open: true,
     private: false,
-    created: new Date('Aug 25, 2019'),
-    updated: new Date("Feb 1, 2021")
+    created: new Date("Aug 25, 2019"),
+    updated: new Date("Feb 1, 2021"),
   },
   {
-    title: 'best-breakfast',
-    description: 'I just have to create my favorite breakfast list',
+    title: "best-breakfast",
+    description: "I just have to create my favorite breakfast list",
     open: true,
     private: false,
-    created: new Date('Feb 3, 2018'),
-    updated: new Date('Mar 30, 2018')
+    created: new Date("Feb 3, 2018"),
+    updated: new Date("Mar 30, 2018"),
   },
   {
-    title: 'french fries',
-    description: 'Who does not like french fries?',
+    title: "french fries",
+    description: "Who does not like french fries?",
     open: true,
     private: false,
-    created: new Date('May 29, 2018'),
-    updated: new Date('Jul 15, 2020')
+    created: new Date("May 29, 2018"),
+    updated: new Date("Jul 15, 2020"),
   },
   {
-    title: 'best-team project',
-    description: 'project for my best-team',
+    title: "best-team project",
+    description: "project for my best-team",
     open: true,
     private: false,
-    created: new Date('Jan 2, 2000'),
-    updated: new Date('Dec 1, 2019')
+    created: new Date("Jan 2, 2000"),
+    updated: new Date("Dec 1, 2019"),
   },
   {
-    title: 'my secret project',
-    description: 'why did I make this a public project',
+    title: "my secret project",
+    description: "why did I make this a public project",
     open: true,
     private: true,
-    created: new Date('Jan 14, 2021'),
-    updated: new Date('Jan 15, 2021')
+    created: new Date("Jan 14, 2021"),
+    updated: new Date("Jan 15, 2021"),
   },
   {
-    title: 'Example1',
-    description: 'THIS IS MY TRIAL TRIAL TRIAL',
+    title: "Example1",
+    description: "THIS IS MY TRIAL TRIAL TRIAL",
     open: false,
     private: false,
-    created: new Date('Dec 5, 2020'),
-    updated: new Date('Jan 1, 2021')
+    created: new Date("Dec 5, 2020"),
+    updated: new Date("Jan 1, 2021"),
   },
 ];
 
@@ -248,34 +244,33 @@ const teamBuilder = (taco) => {
 // TEAM MEMBER GET FORM INFO
 const getTeamInfo = (e) => {
   e.preventDefault();
-    const name = document.querySelector('#name').value;
-    const username = document.querySelector('#username').value;
-    const website = document.querySelector('#website').value;
-    const twitter = document.querySelector('#twitter').value;
-    const imageUrl = document.querySelector('#imageUrl').value;
+  const name = document.querySelector("#name").value;
+  const username = document.querySelector("#username").value;
+  const website = document.querySelector("#website").value;
+  const twitter = document.querySelector("#twitter").value;
+  const imageUrl = document.querySelector("#imageUrl").value;
 
-    const obj = {
-      name,
-      username,
-      website,
-      twitter,
-      imageUrl,
-    }
+  const obj = {
+    name,
+    username,
+    website,
+    twitter,
+    imageUrl,
+  };
 
   team.push(obj);
   teamBuilder(team);
 
-  document.querySelector('form').reset();
+  document.querySelector("form").reset();
 };
 
 // FUNCTION FOR OVERVIEW PAGE
 const pinnedBuilder = (taco) => {
-  
   let pinnedCard = "";
   taco.forEach((item, i) => {
     if (item.pinned === true) {
-      let num = Math.floor((Math.random() * 100) + 1);
-      let num2 = Math.floor((Math.random() * 100) + 1);
+      let num = Math.floor(Math.random() * 100 + 1);
+      let num2 = Math.floor(Math.random() * 100 + 1);
       pinnedCard += `<div class="card" style="width: 25rem;">
     <div class="card-body">
     <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6>
@@ -314,29 +309,45 @@ const repoBuilder = (taco) => {
     <div class="card-body">
       <h5 class="card-title" id='card-title'>${item.name}</h5>
       <p class="card-text" id="card-text">${item.description}</p>
-      <p class="card-link" id="link1">${item.technologies}</p>
+    
       <br>
        <a href="#" class="card-link" id="link1">${item.technologies}</a>
       <br>
        <a href="#" class="card-link" id="link2">${item.extra}</a>
-      <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Star
+       <div id="starbtn">
+       <label class="btn btn-secondary">
+      <i class="bi bi-star"name="options" id="option2" autocomplete="off"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+    </svg> Star</i>
   </label>
+  </div
     </div>
   </div>
     `;
   });
-  const repo = document.querySelector('#repo');
+  const repo = document.querySelector("#repo");
   if (repo) {
     printToDom("#repo", domString);
   }
   // printToDom("#repo", domString);
 };
 
+//functionality for search bar
+
+const searchBar = document.querySelector("#searchBar");
+
+searchBar.addEventListener("input", (e) => {
+  const searchString = e.target.value;
+  const filteredRepo = repositories.filter((repo) => {
+    return repo.name.includes(searchString);
+  });
+  repoBuilder(filteredRepo);
+});
+
 // packages builder
 const packageBuilder = (taco) => {
   let domString = "";
-  taco.forEach ((item, i) => {
+  taco.forEach((item, i) => {
     domString += `<div class="card" style="width: 18rem;">
                     <div class="card-body">
                       <img src="${item.icon}" alt="Package Icon" width="100" height="80"
@@ -346,12 +357,11 @@ const packageBuilder = (taco) => {
                     </div>
                   </div>`;
   });
-  
-  const getPackages = document.querySelector('#package');
+
+  const getPackages = document.querySelector("#package");
   if (getPackages) {
     printToDom("#package", domString);
   }
-  
 };
 // GRAB FORM INFO
 
@@ -374,7 +384,7 @@ const isPinned = (e) => {
 
 // Function for Projects page
 const projectBuilder = (taco) => {
-  let showDom = '';
+  let showDom = "";
   taco.forEach((item, i) => {
     showDom += `<div class="container border border-white" id=${i}>
                   <div class="row">
@@ -398,38 +408,42 @@ const projectBuilder = (taco) => {
                   </div>
                   <div class="row">
                   <div class="col-4 align-self-start">
-                  <i class="far fa-clock fs-6"> Updated ${Math.floor(Math.abs(new Date() - item.updated) / 1000 / 60 / 60)} hours ago</i>
+                  <i class="far fa-clock fs-6"> Updated ${Math.floor(
+                    Math.abs(new Date() - item.updated) / 1000 / 60 / 60
+                  )} hours ago</i>
                   </div>
                   <div class="col-5 align-self-start">
-                  <i class="fas fa-grimace"></i> Created ${Math.floor(Math.abs(new Date() - item.created) / 1000 / 60 / 60 / 24)} days ago</i>
+                  <i class="fas fa-grimace"></i> Created ${Math.floor(
+                    Math.abs(new Date() - item.created) / 1000 / 60 / 60 / 24
+                  )} days ago</i>
                   </div>
                   </div>
-                </div>`
-  })
-  const showProjects = document.querySelector('#showProjects');
+                </div>`;
+  });
+  const showProjects = document.querySelector("#showProjects");
   if (showProjects) {
     printToDom("#showProjects", showDom);
   }
-}
+};
 
 const searchProject = (projects) => {
-  const searchBar = document.querySelector('#search-input');
+  const searchBar = document.querySelector("#search-input");
   if (searchBar) {
-  searchBar.addEventListener('input', e => {
-    const element = e.target.value.toLowerCase();
-    const filteredProject = projects.filter(project =>
-      project.title.toLowerCase().includes(element)
-    )
-    projectBuilder(filteredProject);
-  });
-}
-}
+    searchBar.addEventListener("input", (e) => {
+      const element = e.target.value.toLowerCase();
+      const filteredProject = projects.filter((project) =>
+        project.title.toLowerCase().includes(element)
+      );
+      projectBuilder(filteredProject);
+    });
+  }
+};
 
 //Function for projects page continue
 const getProjectInfo = (e) => {
   e.preventDefault();
-  const title = document.querySelector('#projectTitle').value;
-  const description = document.querySelector('#projectDetails').value;
+  const title = document.querySelector("#projectTitle").value;
+  const description = document.querySelector("#projectDetails").value;
   const updated = new Date();
   const created = new Date();
   const obj = {
@@ -437,11 +451,11 @@ const getProjectInfo = (e) => {
     description,
     updated,
     created,
-  }
+  };
   projects.push(obj);
   projectBuilder(projects);
-  document.querySelector('form').reset();
-}
+  document.querySelector("form").reset();
+};
 
 // Function for projects page
 const buttonFunc = (e) => {
@@ -492,8 +506,6 @@ const handleButtonClick = () => {
     submitProject.addEventListener('click', getProjectInfo);
   } 
 };
-
-
 
 // INIT
 const init = () => {
