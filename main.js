@@ -75,44 +75,23 @@ const team = [
   {
     name: "Kat Siren",
     username: "katsiren55",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero iure assumenda maxime et? Facilis sapiente architecto inventore temporibus unde obcaecati veritatis. Aut assumenda, libero incidunt nihil dolore ut consequatur et?",
-    followers: "200k",
-    following: 5,
-    location: "Istanbul",
-    gitHub: "katsiren@kat.com",
     website: "aboutkatsiren.com",
     twitter: "Koffee&Kat",
-    organizations: [],
-    sponsors: [],
+    imageUrl: "images/katy-logo.png",
   },
   {
     name: "Rob Cole",
     username: "robertncole1",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero iure assumenda maxime et? Facilis sapiente architecto inventore temporibus unde obcaecati veritatis. Aut assumenda, libero incidunt nihil dolore ut consequatur et?",
-    followers: 0,
-    following: 0,
-    location: "Tampa, FL",
-    gitHub: "robertncole1@gmail.com",
     website: "https://robcolecreative.com",
     twitter: "none",
-    organizations: [],
-    sponsors: [],
+    imageUrl: "images/katy-logo.png",
   },
   {
     name: "Sara Schoonover",
     username: "username",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero iure assumenda maxime et? Facilis sapiente architecto inventore temporibus unde obcaecati veritatis. Aut assumenda, libero incidunt nihil dolore ut consequatur et?",
-    followers: 0,
-    following: 0,
-    location: "Nashville, TN",
-    gitHub: "email@email.com",
     website: "https://saraiscool.com",
     twitter: "saraschoon",
-    organizations: [],
-    sponsors: [],
+    imageUrl: "images/katy-logo.png",
   },
 ];
 
@@ -150,19 +129,20 @@ const userBuilder = (taco) => {
   printToDom("#sidebar", domString);
 };
 
+// TEAM MEMBER BUILDER
 const teamBuilder = (taco) => {
   let domString = "";
   taco.forEach((item, i) => {
     domString += `<div class="card mb-3">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img class="team-member" src="images/katy-logo.png" alt="kat siren logo">
+                        <img class="team-member" src="${item.imageUrl}" alt="kat siren logo">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title">${item.name}</h5>
                           <ul class="list-group list-group-flush">
-                            <li class="list-group-item">GitHub: ${item.gitHub}</li>
+                            <li class="list-group-item">GitHub: ${item.username}</li>
                             <li class="list-group-item">Website: ${item.website}</li>
                             <li class="list-group-item">Twitter: ${item.twitter}</li>
                           </ul>
@@ -175,6 +155,29 @@ const teamBuilder = (taco) => {
   if (teamMembers) {
     printToDom("#team-members", domString);
   }
+};
+
+// TEAM MEMBER GET FORM INFO
+const getTeamInfo = (e) => {
+  e.preventDefault();
+    const name = document.querySelector('#name').value;
+    const username = document.querySelector('#username').value;
+    const website = document.querySelector('#website').value;
+    const twitter = document.querySelector('#twitter').value;
+    const imageUrl = document.querySelector('#imageUrl').value;
+
+    const obj = {
+      name,
+      username,
+      website,
+      twitter,
+      imageUrl,
+    }
+
+  team.push(obj);
+  teamBuilder(team);
+
+  document.querySelector('form').reset();
 };
 
 // FUNCTION FOR OVERVIEW PAGE
@@ -262,6 +265,7 @@ const handleButtonClick = (e) => {
   if (submitPin) {
     document.querySelector("#submit-pin").addEventListener("click", isPinned);
   }
+  document.querySelector('#team-form').addEventListener('submit', getTeamInfo);
 };
 
 // INIT

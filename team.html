@@ -67,46 +67,66 @@
               </div>
             </nav>
             <!-- FIRST SECTION -->
-            <div class="row align-items-start">
+            <div class="row align-items-start" id="team-members">
               <h2>Team Members</h2>
             </div>
             <!-- SECOND SECTION -->
-            <div class="row align-items-start" id="form">
+            <div class="row align-items-start" id="team-form">
               <h2>Add a New Team Member</h2>
               <form>
                 <div class="row">
                   <div class="col">
-                    <label class="form-label">First Name</label>
+                    <label class="form-label">Name</label>
                     <input
                       type="text"
                       class="form-control form-style"
+                      id="name"
                       aria-label="First name"
+                      required
                     />
                   </div>
-                  <div class="col">
-                    <label class="form-label">Last Name</label>
-                    <input
-                      type="text"
-                      class="form-control form-style"
-                      aria-label="Last name"
-                    />
-                  </div>
-                </div>
-                <div class="row">
                   <div class="col">
                     <label class="form-label">GitHub Username</label>
                     <input
                       type="text"
                       class="form-control form-style"
+                      id="username"
                       aria-label="GitHub Username"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <label class="form-label">Website Username</label>
+                    <input
+                      type="url"
+                      class="form-control form-style"
+                      id="website"
+                      aria-label="Website"
+                      required
                     />
                   </div>
                   <div class="col">
-                    <label class="form-label">LinkedIn Username</label>
+                    <label class="form-label">Twitter Username</label>
                     <input
                       type="text"
                       class="form-control form-style"
-                      aria-label="LinkedIn"
+                      id="twitter"
+                      aria-label="Twitter"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <label class="form-label">Profile Picture URL</label>
+                    <input
+                      type="url"
+                      class="form-control form-style"
+                      id="imageUrl"
+                      aria-label="Profile Picture URL"
+                      required
                     />
                   </div>
                 </div>
