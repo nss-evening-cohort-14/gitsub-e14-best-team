@@ -386,7 +386,7 @@ const isPinned = (e) => {
 const projectBuilder = (taco) => {
   let showDom = "";
   taco.forEach((item, i) => {
-    showDom += `<div class="container border border-white">
+    showDom += `<div class="container border border-white" id=${i}>
                   <div class="row">
                     <div class="col-3 align-self-start">
                       ${item.title}
@@ -399,10 +399,10 @@ const projectBuilder = (taco) => {
                         ...
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">Edit File</a></li>
-                        <li><a class="dropdown-item" href="#">Close Project</a></li>
+                        <li><a class="dropdown-item" id="editProject" href="#">Edit File</a></li>
+                        <li><a class="dropdown-item" id="closeProject" href="#">Close Project</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Setting</a></li>
+                        <li><a class="dropdown-item" id="setting" href="#">Setting</a></li>
                       </ul>
                     </div>
                   </div>
@@ -459,43 +459,52 @@ const getProjectInfo = (e) => {
 
 // Function for projects page
 const buttonFunc = (e) => {
-  const result = document.querySelector("#projectSort").value;
-  if (result === "alphabet") {
-    projects.sort((a, b) =>
-      a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1
-    );
+  const targetId = e.target.id;
+  if (targetId === 'editProject') {
+    document.querySelector('#showSecret').innerHTML = `<p>This page is under construction</p>`
+  } else if (targetId === 'closeProject') {
+    projects.splice(targetId, 1);
     projectBuilder(projects);
-  } else if (result === "update") {
+  } else if (targetId === 'setting') {
+    const question = prompt('Do you want to go to setting page?')
+    alert(`${question} is not the right answer to go to the setting`);
+  }
+
+  const result = document.querySelector('#projectSort').value;
+  if (result === 'alphabet') {
+    projects.sort((a, b) => (a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1));
+    projectBuilder(projects);
+  } else if (result === 'update') {
     projects.sort((a, b) => (a.updated > b.updated ? -1 : 1));
     projectBuilder(projects);
-  } else if (result === "create") {
+  } else if (result === 'create') {
     projects.sort((a, b) => (a.created > b.created ? -1 : 1));
     projectBuilder(projects);
   }
-};
+}
 
 // BUTTON EVENTS
 const handleButtonClick = () => {
-  const teamSubmit = document.querySelector("#team-form");
   const submitPin = document.querySelector("#submit-pin");
-  const submitProject = document.querySelector("#submitProject");
-  const projectSort = document.querySelector("#projectSort");
-
   if (submitPin) {
-    document.querySelector("#submit-pin").addEventListener("click", isPinned);
-  } else if (teamSubmit) {
-    document
-      .querySelector("#team-form")
-      .addEventListener("submit", getTeamInfo);
-  } else if (submitProject) {
-    document
-      .querySelector("#submitProject")
-      .addEventListener("click", getProjectInfo);
-  } else if (projectSort) {
-    document
-      .querySelector("#projectSort")
-      .addEventListener("click", buttonFunc);
+    submitPin.addEventListener("click", isPinned);
   }
+  const teamSubmit = document.querySelector('#team-form');
+  if (teamSubmit) {
+    teamSubmit.addEventListener('submit', getTeamInfo);
+  }
+  const projectSort = document.querySelector('#projectSort');
+  if (projectSort) {
+    projectSort.addEventListener('click', buttonFunc);
+  }
+  const showProject = document.querySelector('#showProjects');
+  if (showProject) {
+    showProject.addEventListener('click', buttonFunc);
+  }
+  const submitProject = document.querySelector('#submitProject');
+  if (submitProject) {
+    submitProject.addEventListener('click', getProjectInfo);
+  } 
 };
 
 // INIT
@@ -508,7 +517,6 @@ const init = () => {
   projectBuilder(projects);
   searchProject(projects);
   packageBuilder(packages);
-
   handleButtonClick();
 };
 
