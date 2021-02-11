@@ -146,7 +146,46 @@ const projects = [
   },
 ];
 
-const packages = [];
+const packages = [
+  {
+    icon: "",
+    name: "Docker",
+    description:
+      "The world's easiest way to create, manage, and deliver your teams' container applications. ",
+    website: "https://hub.docker.com/",
+  },
+
+  {
+    icon: "",
+    name: "Apache Maven",
+    description:
+      "A default package manager used with Java and the Java runtime environment.",
+    website: "https://maven.apache.org/",
+  },
+
+  {
+    icon: "",
+    name: "NuGet",
+    description:
+      "A package manager used with Microsoft platforms, including .NET.",
+    website: "https://www.nuget.org/",
+  },
+
+  {
+    icon: "",
+    name: "RubyGems",
+    description:
+      "A standard format for distributing programs and libraries with Ruby",
+    website: "https://rubygems.org/",
+  },
+
+  {
+    icon: "",
+    name: "npm",
+    description: "A package manager for JavaScript, included with Node.js.",
+    website: "https://www.npmjs.com/",
+  },
+];
 
 // PRINT TO DOM
 const printToDom = (divId, textToPrint) => {
@@ -154,7 +193,7 @@ const printToDom = (divId, textToPrint) => {
   selectedDiv.innerHTML = textToPrint;
 };
 
-// CARD BUIDLER
+// CARD BUILDER
 const userBuilder = (taco) => {
   let domString = "";
   taco.forEach((item, i) => {
@@ -289,6 +328,22 @@ const repoBuilder = (taco) => {
   }
   // printToDom("#repo", domString);
 };
+
+// packages builder
+const packageBuilder = (taco) => {
+  let domString = "";
+  taco.forEach ((item, i) => {
+    domString += `<div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <img src="${item.icon}" alt="Package Icon" width="100" height="80"
+                      <h5 class="card-title">${item.name}</h5>
+                      <p class="card-text">${item.description}</p>
+                      <a href="${item.website}" class="btn btn-success">Learn More</a>
+                    </div>
+                  </div>`;
+  });
+  printToDom("#package", domString);
+};
 // GRAB FORM INFO
 
 //FUNCTION FOR OVERVIEW PAGE
@@ -350,6 +405,7 @@ const projectBuilder = (taco) => {
 
 const searchProject = (projects) => {
   const searchBar = document.querySelector('#search-input');
+  if (searchBar) {
   searchBar.addEventListener('input', e => {
     const element = e.target.value.toLowerCase();
     const filteredProject = projects.filter(project =>
@@ -357,6 +413,7 @@ const searchProject = (projects) => {
     )
     projectBuilder(filteredProject);
   });
+}
 }
 
 //Function for projects page continue
@@ -392,18 +449,23 @@ const buttonFunc = (e) => {
   }
 }
 
-const projectButtonEvents = () => {
-  document.querySelector('#submitProject').addEventListener('click', getProjectInfo);
-  document.querySelector('#projectSort').addEventListener('click', buttonFunc);
-}
-
 // BUTTON EVENTS
-const handleButtonClick = (e) => {
+const handleButtonClick = () => {
+  const teamSubmit =document.querySelector('#team-form');
   const submitPin = document.querySelector("#submit-pin");
+  const submitProject = document.querySelector("#submitProject");
+  const projectSort = document.querySelector('#projectSort');
+
   if (submitPin) {
     document.querySelector("#submit-pin").addEventListener("click", isPinned);
+  } else if (teamSubmit) {
+    document.querySelector('#team-form').addEventListener('submit', getTeamInfo);
+  } else if (submitProject) {
+    document.querySelector('#submitProject').addEventListener('click', getProjectInfo);
+  } else if (projectSort) {
+    document.querySelector('#projectSort').addEventListener('click', buttonFunc);
   }
-  document.querySelector('#team-form').addEventListener('submit', getTeamInfo);
+  
 };
 
 
@@ -414,11 +476,12 @@ const init = () => {
   teamBuilder(team);
   populatePinned(repositories);
   pinnedBuilder(repositories);
-  handleButtonClick();
   repoBuilder(repositories);
-  projectButtonEvents();
   projectBuilder(projects);
   searchProject(projects);
+  packageBuilder(packages);
+
+  handleButtonClick();
 
 };
 
