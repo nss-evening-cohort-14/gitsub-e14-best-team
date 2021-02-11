@@ -22,6 +22,7 @@ const repositories = [
   {
     name: "greys-anatoy-lorm-ipsum-generator",
     description:
+
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: [
       "netlify",
@@ -37,6 +38,7 @@ const repositories = [
   {
     name: "how-many-days-until",
     description:
+
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: ["react", "countdown", "hacktoberfest"],
     extra: ["Javascript", 6, 33, "Updated 19 days ago"],
@@ -45,6 +47,7 @@ const repositories = [
   {
     name: "httiriri",
     description:
+
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: ["http", "status-codes", "gifs", "rihanna", "hacktoberfest"],
     extra: ["Typescript", 37, 22, "4 issues need help", "Updated 27 days ago"],
@@ -53,6 +56,7 @@ const repositories = [
   {
     name: "ambition-fund-website",
     description:
+
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: ["donation", "landing-page"],
     extra: [
@@ -207,6 +211,32 @@ const populatePinned = (taco) => {
     printToDom("#getPinned", pinnedText);
   }
 };
+
+const repoBuilder = (taco) => {
+  domString = "";
+  taco.forEach((item, i) => {
+    domString += `<div class="card" style="height: 10em width: 18rem; id=${i}">
+    <div class="card-body">
+      <h5 class="card-title" id='card-title'>${item.name}</h5>
+      <p class="card-text" id="card-text">${item.description}</p>
+      <p class="card-link" id="link1">${item.technologies}</p>
+      <br>
+       <a href="#" class="card-link" id="link1">${item.technologies}</a>
+      <br>
+       <a href="#" class="card-link" id="link2">${item.extra}</a>
+      <label class="btn btn-secondary">
+    <input type="radio" name="options" id="option2" autocomplete="off"> Star
+  </label>
+    </div>
+  </div>
+    `;
+  });
+  const repo = document.querySelector('#repo');
+  if (repo) {
+    printToDom("#repo", domString);
+  }
+  // printToDom("#repo", domString);
+};
 // GRAB FORM INFO
 
 //FUNCTION FOR OVERVIEW PAGE
@@ -241,6 +271,8 @@ const init = () => {
   populatePinned(repositories);
   pinnedBuilder(repositories);
   handleButtonClick();
+  repoBuilder(repositories);
+
 };
 
 init();
