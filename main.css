@@ -26,6 +26,11 @@ footer ul {
   color:#c6cfd7;
 }
 
+input[type=text]:focus, input[type=url]:focus, textarea:focus  {
+  background-color: #0d1117;
+  color:#c6cfd7;
+}
+
 .team-member {
   width: 200px;
   height: 200px;
