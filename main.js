@@ -84,14 +84,14 @@ const team = [
     username: "robertncole1",
     website: "https://robcolecreative.com",
     twitter: "none",
-    imageUrl: "images/katy-logo.png",
+    imageUrl: "https://avatars.githubusercontent.com/u/76854545?s=460&u=f5424c7a737a6e847fb0415886a6857f56f15bc7&v=4",
   },
   {
     name: "Sara Schoonover",
     username: "username",
     website: "https://saraiscool.com",
     twitter: "saraschoon",
-    imageUrl: "images/katy-logo.png",
+    imageUrl: "https://avatars.githubusercontent.com/u/25774314?s=460&u=f02c0b3ec9ec2c2cf3ed4ecae25d6d793048f020&v=4",
   },
 ];
 
@@ -166,12 +166,12 @@ const userBuilder = (taco) => {
                       <p class="card-text">${item.description}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Location: ${item.location}</li>
-                      <li class="list-group-item">GitHub: ${item.gitHub}</li>
-                      <li class="list-group-item">Website: ${item.website}</li>
-                      <li class="list-group-item">Twitter: ${item.twitter}</li>
-                      <li class="list-group-item">Followers: ${item.followers}</li>
-                      <li class="list-group-item">Following: ${item.following}</li>
+                      <li class="list-group-item"><i class="fas fa-map-marker-alt"></i>  ${item.location}</li>
+                      <li class="list-group-item"><i class="fas fa-envelope"></i>  ${item.gitHub}</li>
+                      <li class="list-group-item"><i class="fas fa-link"></i>  ${item.website}</li>
+                      <li class="list-group-item"><i class="fab fa-twitter"></i>  ${item.twitter}</li>
+                      <li class="list-group-item"><i class="fas fa-user-friends"></i>  ${item.followers}</li>
+                      <li class="list-group-item"><i class="fas fa-users"></i>  ${item.following}</li>
                     </ul>
                   </div>`;
   });
@@ -191,9 +191,9 @@ const teamBuilder = (taco) => {
                         <div class="card-body">
                           <h5 class="card-title">${item.name}</h5>
                           <ul class="list-group list-group-flush">
-                            <li class="list-group-item">GitHub: ${item.username}</li>
-                            <li class="list-group-item">Website: ${item.website}</li>
-                            <li class="list-group-item">Twitter: ${item.twitter}</li>
+                            <li class="list-group-item"><i class="fas fa-user"></i>  ${item.username}</li>
+                            <li class="list-group-item"><i class="fas fa-link"></i>  ${item.website}</li>
+                            <li class="list-group-item"><i class="fab fa-twitter"></i>  ${item.twitter}</li>
                           </ul>
                         </div>
                       </div>
