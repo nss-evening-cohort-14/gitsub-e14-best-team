@@ -231,15 +231,19 @@ const getTeamInfo = (e) => {
 
 // FUNCTION FOR OVERVIEW PAGE
 const pinnedBuilder = (taco) => {
+  
   let pinnedCard = "";
   taco.forEach((item, i) => {
     if (item.pinned === true) {
-      pinnedCard += `<div class="card" style="width: 18rem;">
+      let num = Math.floor((Math.random() * 100) + 1);
+      let num2 = Math.floor((Math.random() * 100) + 1);
+      pinnedCard += `<div class="card" style="width: 25rem;">
     <div class="card-body">
-      <h5 class="card-title">${item.name}</h5>
+    <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6>
       <p class="card-text">${item.description}.</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+      <span class="mx-2"><i class="fas fa-circle mx-1" style="color: yellow"></i>Javascript</span>
+      <span class="mx-2"><i class="far fa-star mx-1"></i>${num}</span>
+      <span class="mx-2"><i class="fas fa-code-branch mx-1"></i>${num2}</span>
     </div>
   </div>`;
     }

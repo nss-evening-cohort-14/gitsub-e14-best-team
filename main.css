@@ -57,3 +57,11 @@ button {
   padding-left: 0;
   padding-right: 0;
 }
+
+.fa-bookmark {
+  padding: 8px;
+}
+
+.pinned-card {
+  color: #0d6efd
+}
