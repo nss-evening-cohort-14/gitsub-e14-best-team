@@ -346,7 +346,12 @@ const packageBuilder = (taco) => {
                     </div>
                   </div>`;
   });
-  printToDom("#package", domString);
+  
+  const getPackages = document.querySelector('#package');
+  if (getPackages) {
+    printToDom("#package", domString);
+  }
+  
 };
 // GRAB FORM INFO
 
