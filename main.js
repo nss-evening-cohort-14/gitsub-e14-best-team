@@ -280,10 +280,10 @@ const pinnedBuilder = (taco) => {
   taco.forEach((item, i) => {
     if (item.pinned === true) {
       let num = Math.floor(Math.random() * 100 + 1);
-      let num2 = Math.floor(Math.random() * 100 + 1);
-      pinnedCard += `<div class="card" style="width: 25rem;">
+      let num2 = Math.floor(Math.random() * 20 + 1);
+      pinnedCard += `<div class="card" style="width: 22rem;">
     <div class="card-body">
-    <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6>
+    <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6> 
       <p class="card-text">${item.description}.</p>
       <span class="mx-2"><i class="fas fa-circle mx-1" style="color: yellow"></i>Javascript</span>
       <span class="mx-2"><i class="far fa-star mx-1"></i>${num}</span>
@@ -388,7 +388,6 @@ const isPinned = (e) => {
   const makePinned = document.querySelector("#getPinned").value;
 
   if (buttonType === "submit-pin") {
-    console.log("submit");
     repositories.forEach((item, i) => {
       if (item.name === makePinned) {
         item.pinned = true;
@@ -397,6 +396,7 @@ const isPinned = (e) => {
     pinnedBuilder(repositories);
   }
 };
+
 
 // Function for Projects page
 const projectBuilder = (taco) => {
