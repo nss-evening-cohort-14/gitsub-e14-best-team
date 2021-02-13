@@ -29,7 +29,11 @@ const repositories = [
       "serverless",
       "react",
     ],
-    extra: ["Javascript", 8, 3, "1 issue needs help", "Updated"],
+    language: "Javascript",
+    starsNumber: 8,
+    mit: 3,
+    issues: " 1 issue needs help",
+    updated: " Updated",
     pinned: true,
   },
   {
@@ -37,7 +41,11 @@ const repositories = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: ["react", "countdown", "hacktoberfest"],
-    extra: ["Javascript", 6, 33, "Updated 19 days ago"],
+    language: "Javascript",
+    starsNumber: 6,
+    mit: 21,
+    issues: 33,
+    updated: " Updated 19 days ago",
     pinned: true,
   },
   {
@@ -45,7 +53,11 @@ const repositories = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: ["http", "status-codes", "gifs", "rihanna", "hacktoberfest"],
-    extra: ["Typescript", 37, 22, "4 issues need help", "Updated 27 days ago"],
+    language: "Typescript ",
+    starsNumber: 37,
+    mit: 22,
+    issues: "4 issues need help ",
+    updated: " Updated 27 days ago",
     pinned: false,
   },
   {
@@ -53,14 +65,12 @@ const repositories = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo accusamus labore earum sit est suscipit incidunt soluta corporis libero velit fugit eveniet optio quidem non officia quibusdam ab, ipsum voluptatum!",
     technologies: ["donation", "landing-page"],
-    extra: [
-      "Javascript",
-      7,
-      6,
-      "MIT License",
-      "3 issues need help",
-      "Updated on Dec 12, 2020",
-    ],
+    language: "Javascript ",
+    starsNumber: 7,
+    mit: 3,
+    issues: 6,
+    issues: "3 issues need help ",
+    updated: " Updated Dec 12, 2020",
     pinned: false,
   },
 ];
@@ -270,10 +280,10 @@ const pinnedBuilder = (taco) => {
   taco.forEach((item, i) => {
     if (item.pinned === true) {
       let num = Math.floor(Math.random() * 100 + 1);
-      let num2 = Math.floor(Math.random() * 100 + 1);
-      pinnedCard += `<div class="card" style="width: 25rem;">
+      let num2 = Math.floor(Math.random() * 20 + 1);
+      pinnedCard += `<div class="card" style="width: 22rem;">
     <div class="card-body">
-    <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6>
+    <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6> 
       <p class="card-text">${item.description}.</p>
       <span class="mx-2"><i class="fas fa-circle mx-1" style="color: yellow"></i>Javascript</span>
       <span class="mx-2"><i class="far fa-star mx-1"></i>${num}</span>
@@ -309,11 +319,14 @@ const repoBuilder = (taco) => {
     <div class="card-body">
       <h5 class="card-title" id='card-title'>${item.name}</h5>
       <p class="card-text" id="card-text">${item.description}</p>
-    
       <br>
        <a href="#" class="card-link" id="link1">${item.technologies}</a>
       <br>
-       <a href="#" class="card-link" id="link2">${item.extra}</a>
+      <span class="lang"><i class="fas fa-circle mx-1" style="color: yellow"></i>${item.language}</span>
+      <span class="stars"><i class="far fa-star"></i>${item.starsNumber}</span>
+      <span class="mit"><i class="fas fa-code-branch mx-1"></i>${item.mit}</span>
+      <span class="issues">${item.issues}</span>
+      <span class="update">${item.updated}</span>
        <div id="starbtn">
        <label class="btn btn-secondary">
       <i class="bi bi-star"name="options" id="option2" autocomplete="off"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -334,19 +347,7 @@ const repoBuilder = (taco) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 //functionality for search bar
-
 const searchAble = (repositories) => {
   const searchBar = document.querySelector("#searchBar");
   if (searchBar) {
@@ -388,7 +389,6 @@ const isPinned = (e) => {
   const makePinned = document.querySelector("#getPinned").value;
 
   if (buttonType === "submit-pin") {
-    console.log("submit");
     repositories.forEach((item, i) => {
       if (item.name === makePinned) {
         item.pinned = true;
@@ -397,6 +397,7 @@ const isPinned = (e) => {
     pinnedBuilder(repositories);
   }
 };
+
 
 // Function for Projects page
 const projectBuilder = (taco) => {
@@ -476,28 +477,32 @@ const getProjectInfo = (e) => {
 // Function for projects page
 const buttonFunc = (e) => {
   const targetId = e.target.id;
-  if (targetId === 'editProject') {
-    document.querySelector('#showSecret').innerHTML = `<p class="text-warning fw-bold">This page is under construction. Come back later.</p>`
-  } else if (targetId === 'closeProject') {
+  if (targetId === "editProject") {
+    document.querySelector(
+      "#showSecret"
+    ).innerHTML = `<p>This page is under construction</p>`;
+  } else if (targetId === "closeProject") {
     projects.splice(targetId, 1);
     projectBuilder(projects);
-  } else if (targetId === 'setting') {
-    const question = prompt('Do you want to see the setting page?')
+  } else if (targetId === "setting") {
+    const question = prompt("Do you want to go to setting page?");
     alert(`${question} is not the right answer to go to the setting`);
   }
 
-  const result = document.querySelector('#projectSort').value;
-  if (result === 'alphabet') {
-    projects.sort((a, b) => (a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1));
+  const result = document.querySelector("#projectSort").value;
+  if (result === "alphabet") {
+    projects.sort((a, b) =>
+      a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1
+    );
     projectBuilder(projects);
-  } else if (result === 'update') {
+  } else if (result === "update") {
     projects.sort((a, b) => (a.updated > b.updated ? -1 : 1));
     projectBuilder(projects);
-  } else if (result === 'create') {
+  } else if (result === "create") {
     projects.sort((a, b) => (a.created > b.created ? -1 : 1));
     projectBuilder(projects);
   }
-}
+};
 
 // BUTTON EVENTS
 const handleButtonClick = () => {
@@ -505,22 +510,22 @@ const handleButtonClick = () => {
   if (submitPin) {
     submitPin.addEventListener("click", isPinned);
   }
-  const teamSubmit = document.querySelector('#team-form');
+  const teamSubmit = document.querySelector("#team-form");
   if (teamSubmit) {
-    teamSubmit.addEventListener('submit', getTeamInfo);
+    teamSubmit.addEventListener("submit", getTeamInfo);
   }
-  const projectSort = document.querySelector('#projectSort');
+  const projectSort = document.querySelector("#projectSort");
   if (projectSort) {
-    projectSort.addEventListener('click', buttonFunc);
+    projectSort.addEventListener("click", buttonFunc);
   }
-  const showProject = document.querySelector('#showProjects');
+  const showProject = document.querySelector("#showProjects");
   if (showProject) {
-    showProject.addEventListener('click', buttonFunc);
+    showProject.addEventListener("click", buttonFunc);
   }
-  const submitProject = document.querySelector('#submitProject');
+  const submitProject = document.querySelector("#submitProject");
   if (submitProject) {
-    submitProject.addEventListener('click', getProjectInfo);
-  } 
+    submitProject.addEventListener("click", getProjectInfo);
+  }
 };
 
 // INIT
