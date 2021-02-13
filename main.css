@@ -98,6 +98,10 @@ button {
    
  }
 
+ .delete {
+  float: right;
+}
+
  .fa-clock {
    color: #90ee90;
  }

@@ -400,7 +400,7 @@ const teamBuilder = (taco) => {
                               </ul>
                             </div>
                           </div>
-                          <button type="button" class="btn btn-danger" id="${i}">Delete</button>
+                          <button type="button" class="btn-close btn-close-white delete" id="${i}" aria-label="Close" title="Delete Team Member"></button>
                         </div>
                       </div>
                     </div>
