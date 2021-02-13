@@ -455,7 +455,7 @@ const pinnedBuilder = (taco) => {
       let num = Math.floor(Math.random() * 100 + 1);
       let num2 = Math.floor(Math.random() * 20 + 1);
       pinnedCard += `<div class="card" style="width: 22rem;">
-     <span id="unpin"><button type="button" class="btn-close btn-close-white" aria-label="Close" id="unpin--${item.id}">
+     <span id="unpin"><button type="button" title="delete pin" class="btn-close btn-close-white" aria-label="Close" id="unpin--${item.id}">
 </button></span>
     <div class="card-body">
     <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6> 
@@ -596,12 +596,14 @@ const isPinned = (e) => {
       } 
     });
     pinnedBuilder(repositories);
+    populatePinned(repositories);
   } 
   if (buttonType.includes("unpin")) {
     const id = Number(buttonType.split("--")[1])
     const findRepo = repositories.find(repo => repo.id === id)
     findRepo.pinned = false
     pinnedBuilder(repositories);
+    populatePinned(repositories);
   }
 };
 
