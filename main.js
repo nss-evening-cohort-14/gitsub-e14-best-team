@@ -154,7 +154,7 @@ const projects = [
 
 const packages = [
   {
-    icon: "",
+    icon: "https://www.docker.com/sites/default/files/d8/styles/role_icon/public/2019-07/Moby-logo.png",
     name: "Docker",
     description:
       "The world's easiest way to create, manage, and deliver your teams' container applications. ",
@@ -162,7 +162,7 @@ const packages = [
   },
 
   {
-    icon: "",
+    icon: "http://maven.apache.org/images/logos/build-by-maven-black.png",
     name: "Apache Maven",
     description:
       "A default package manager used with Java and the Java runtime environment.",
@@ -170,7 +170,7 @@ const packages = [
   },
 
   {
-    icon: "",
+    icon: "https://www.nuget.org/Content/gallery/img/logo-og-600x600.png",
     name: "NuGet",
     description:
       "A package manager used with Microsoft platforms, including .NET.",
@@ -178,7 +178,7 @@ const packages = [
   },
 
   {
-    icon: "",
+    icon: "https://cdn.worldvectorlogo.com/logos/rubygems.svg",
     name: "RubyGems",
     description:
       "A standard format for distributing programs and libraries with Ruby",
@@ -186,7 +186,7 @@ const packages = [
   },
 
   {
-    icon: "",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg",
     name: "npm",
     description: "A package manager for JavaScript, included with Node.js.",
     website: "https://www.npmjs.com/",
@@ -366,7 +366,7 @@ const packageBuilder = (taco) => {
   taco.forEach((item, i) => {
     domString += `<div class="card" style="width: 18rem;">
                     <div class="card-body">
-                      <img src="${item.icon}" alt="Package Icon" width="100" height="80"
+                      <img src="${item.icon}" alt="Package Icon" width="50" height="50"
                       <h5 class="card-title">${item.name}</h5>
                       <p class="card-text">${item.description}</p>
                       <a href="${item.website}" class="btn btn-success">Learn More</a>
@@ -380,6 +380,19 @@ const packageBuilder = (taco) => {
   }
 };
 // GRAB FORM INFO
+const addPackage = (e) => {
+  e.preventDefault();
+  const name = document.querySelector('#formGroupExampleInput').value;
+  const description = document.querySelector('#exampleFormControlTextarea1').value;
+
+  const objs = {
+    name,
+    description,
+  };
+
+  packages.push(objs);
+  packageBuilder(packages);
+}
 
 //FUNCTION FOR OVERVIEW PAGE
 const isPinned = (e) => {
@@ -525,6 +538,10 @@ const handleButtonClick = () => {
   if (submitProject) {
     submitProject.addEventListener("click", getProjectInfo);
   }
+  const submitPackage = document.querySelector("#form");
+  if (submitPackage){
+    submitPackage.addEventListener("click", addPackage);
+  }
 };
 
 // INIT
@@ -537,8 +554,8 @@ const init = () => {
   projectBuilder(projects);
   searchProject(projects);
   packageBuilder(packages);
-  handleButtonClick();
   searchAble(repositories);
+  handleButtonClick();
 };
 
 init();
