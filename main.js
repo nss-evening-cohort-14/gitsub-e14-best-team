@@ -144,6 +144,7 @@ const projects = [
     private: false,
     created: new Date("Aug 25, 2019"),
     updated: new Date("Feb 1, 2021"),
+    id: 0,
   },
   {
     title: "Cheese Burger",
@@ -152,6 +153,7 @@ const projects = [
     private: false,
     created: new Date("Feb 3, 2018"),
     updated: new Date("Mar 30, 2019"),
+    id: 1,
   },
   {
     title: "Ice Cream",
@@ -160,6 +162,7 @@ const projects = [
     private: false,
     created: new Date("May 29, 2018"),
     updated: new Date("Jul 15, 2020"),
+    id: 2,
   },
   {
     title: "Best-team project",
@@ -168,6 +171,7 @@ const projects = [
     private: false,
     created: new Date("Jan 2, 2000"),
     updated: new Date("Dec 1, 2019"),
+    id: 3,
   },
   {
     title: "Secret Project",
@@ -176,6 +180,7 @@ const projects = [
     private: true,
     created: new Date("Jan 14, 2021"),
     updated: new Date("Jan 31, 2021"),
+    id: 4,
   },
   {
     title: "Top Secret Project",
@@ -184,6 +189,7 @@ const projects = [
     private: false,
     created: new Date("Dec 5, 2020"),
     updated: new Date("Jan 1, 2021"),
+    id: 5,
   },
 ];
 
@@ -449,7 +455,7 @@ const pinnedBuilder = (taco) => {
       let num = Math.floor(Math.random() * 100 + 1);
       let num2 = Math.floor(Math.random() * 20 + 1);
       pinnedCard += `<div class="card" style="width: 22rem;">
-     <span id="unpin"><button type="button" class="btn-close btn-close-white" aria-label="Close" id="unpin--${item.id}">
+     <span id="unpin"><button type="button" title="delete pin" class="btn-close btn-close-white" aria-label="Close" id="unpin--${item.id}">
 </button></span>
     <div class="card-body">
     <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6> 
@@ -532,7 +538,7 @@ const searchAble = (repositories) => {
   }
 };
 
-// packages builder
+// Packages builder
 const packageBuilder = (taco) => {
   let domString = "";
   taco.forEach((item, i) => {
@@ -542,6 +548,7 @@ const packageBuilder = (taco) => {
                       <h5 class="card-title">${item.name}</h5>
                       <p class="card-text">${item.description}</p>
                       <a href="${item.website}" class="btn btn-success">Learn More</a>
+                      <button type="button" class="btn btn-danger" >Remove</button>
                     </div>
                   </div>`;
   });
@@ -551,7 +558,7 @@ const packageBuilder = (taco) => {
     printToDom("#package", domString);
   }
 };
-// GRAB FORM INFO
+// Create package function
 const addPackage = (e) => {
   e.preventDefault();
   const name = document.querySelector('#formGroupExampleInput').value;
@@ -564,7 +571,18 @@ const addPackage = (e) => {
 
   packages.push(objs);
   packageBuilder(packages);
-}
+};
+
+// Delete Package function
+const deletePackage = (e) => {
+  const targetType = e.target.type;
+  const targetId = e.target.id;
+  if (targetType === "button"){
+    packages.splice(targetId, 1);
+  }
+  packageBuilder(packages);
+
+};
 
 //FUNCTION FOR OVERVIEW PAGE
 const isPinned = (e) => {
@@ -578,12 +596,14 @@ const isPinned = (e) => {
       } 
     });
     pinnedBuilder(repositories);
+    populatePinned(repositories);
   } 
   if (buttonType.includes("unpin")) {
     const id = Number(buttonType.split("--")[1])
     const findRepo = repositories.find(repo => repo.id === id)
     findRepo.pinned = false
     pinnedBuilder(repositories);
+    populatePinned(repositories);
   }
 };
 
@@ -606,7 +626,7 @@ const projectBuilder = (taco) => {
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" id="editProject" href="#">Edit File</a></li>
-                        <li><a class="dropdown-item" id="closeProject" href="#">Close Project</a></li>
+                        <li><a class="dropdown-item" id="closeProject--${item.id}" href="#">Close Project</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" id="setting" href="#">Setting</a></li>
                       </ul>
@@ -614,9 +634,9 @@ const projectBuilder = (taco) => {
                   </div>
                   <div class="row">
                   <div class="col-4 align-self-start">
-                  <i class="far fa-clock fs-6"> Updated ${Math.floor(
+                  <i class="far fa-clock fs-6"></i> Updated ${Math.floor(
                     Math.abs(new Date() - item.updated) / 1000 / 60 / 60
-                  )} hours ago</i>
+                  )} hours ago
                   </div>
                   <div class="col-6 align-self-start">
                   <i class="fas fa-grimace"></i> Created ${Math.floor(
@@ -669,10 +689,16 @@ const buttonFunc = (e) => {
   if (targetId === "editProject") {
     document.querySelector(
       "#showSecret"
-    ).innerHTML = `<p>This page is under construction</p>`;
-  } else if (targetId === "closeProject") {
+    ).innerHTML = `<p class="text-warning fw-bold">This page is under construction</p>`;
+  } else if (targetId.includes("closeProject")) {
+    const id = Number(targetId.split("--")[1])
+    const findProj = projects.find(projects => projects.id === id)
+    document.querySelector(
+      "#showSecret"
+    ).innerHTML = `<p class="text-warning fw-bold">Congratulations! You closed ${findProj.title} project</p>`;
     projects.splice(targetId, 1);
     projectBuilder(projects);
+    
   } else if (targetId === "setting") {
     const question = prompt("Do you want to go to setting page?");
     alert(`${question} is not the right answer to go to the setting`);
@@ -723,24 +749,32 @@ const handleButtonClick = () => {
   if (deleteTeamMember) {
     deleteTeamMember.addEventListener("click", deleteTeam);
     }
-  const submitPackage = document.querySelector("#form");
-  if (submitPackage){
-    submitPackage.addEventListener("click", addPackage);
+  const ifDeletePackage = document.querySelector("#package");
+  if(ifDeletePackage) {
+    ifDeletePackage.addEventListener("click", deletePackage);
+  }
+};
+
+const getPageLocation = () => {
+  const pageName = location.pathname;
+  if (pageName === "/packages.html"){
+    packageBuilder(packages);
+    document.querySelector("#form").addEventListener("click", addPackage);
   }
 };
 
 // INIT
 const init = () => {
-  userBuilder(users);
+  getPageLocation();
   navBuilder();
   footerBuilder();
+  userBuilder(users);
   teamBuilder(team);
   populatePinned(repositories);
   pinnedBuilder(repositories);
   repoBuilder(repositories);
   projectBuilder(projects);
   searchProject(projects);
-  packageBuilder(packages);
   searchAble(repositories);
   handleButtonClick();
 };
