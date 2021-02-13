@@ -735,28 +735,32 @@ const handleButtonClick = () => {
   if (deleteTeamMember) {
     deleteTeamMember.addEventListener("click", deleteTeam);
     }
-  const submitPackage = document.querySelector("#form");
-  if (submitPackage) {
-    submitPackage.addEventListener("click", addPackage);
-  }
   const ifDeletePackage = document.querySelector("#package");
   if(ifDeletePackage) {
     ifDeletePackage.addEventListener("click", deletePackage);
   }
 };
 
+const getPageLocation = () => {
+  const pageName = location.pathname;
+  if (pageName === "/packages.html"){
+    packageBuilder(packages);
+    document.querySelector("#form").addEventListener("click", addPackage);
+  }
+};
+
 // INIT
 const init = () => {
-  userBuilder(users);
+  getPageLocation();
   navBuilder();
   footerBuilder();
+  userBuilder(users);
   teamBuilder(team);
   populatePinned(repositories);
   pinnedBuilder(repositories);
   repoBuilder(repositories);
   projectBuilder(projects);
   searchProject(projects);
-  packageBuilder(packages);
   searchAble(repositories);
   handleButtonClick();
 };
