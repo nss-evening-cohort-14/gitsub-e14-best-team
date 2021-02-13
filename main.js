@@ -230,6 +230,116 @@ const printToDom = (divId, textToPrint) => {
   selectedDiv.innerHTML = textToPrint;
 };
 
+// NAV BUILDER
+const navBuilder = (taco) => {
+  let domString = `<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="index.html"
+            >Overview</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="repo.html">Repositories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="projects.html">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="packages.html">Packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="team.html">Team</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>`;
+  printToDom("#navbar", domString);
+}
+
+// FOOTER BUILDER
+const footerBuilder = (taco) => {
+  let domString = `<footer class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#"
+            >© 2021 GitHub, INC.</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Teams</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Privacy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Security</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Help</a>
+        </li>
+        <li class="nav-item">
+          <img
+            class="gitsubLogo"
+            src="images/katy-logo.png"
+            alt="GitHub altered logo"
+          />
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact GitGub</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">API</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Training</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>`;
+  printToDom("#footer", domString);
+}
+
 // CARD BUILDER
 const userBuilder = (taco) => {
   let domString = "";
@@ -605,6 +715,8 @@ const handleButtonClick = () => {
 // INIT
 const init = () => {
   userBuilder(users);
+  navBuilder();
+  footerBuilder();
   teamBuilder(team);
   populatePinned(repositories);
   pinnedBuilder(repositories);
