@@ -103,48 +103,48 @@ const team = [
 
 const projects = [
   {
-    title: "my-dream",
-    description: "My dream project",
+    title: "French Fries",
+    description: "My favorite french fries project",
     open: true,
     private: false,
     created: new Date("Aug 25, 2019"),
     updated: new Date("Feb 1, 2021"),
   },
   {
-    title: "best-breakfast",
-    description: "I just have to create my favorite breakfast list",
+    title: "Cheese Burger",
+    description: "This is my Cheese Burger project",
     open: true,
     private: false,
     created: new Date("Feb 3, 2018"),
-    updated: new Date("Mar 30, 2018"),
+    updated: new Date("Mar 30, 2019"),
   },
   {
-    title: "french fries",
-    description: "Who does not like french fries?",
+    title: "Ice Cream",
+    description: "Ice Cream project vol.3",
     open: true,
     private: false,
     created: new Date("May 29, 2018"),
     updated: new Date("Jul 15, 2020"),
   },
   {
-    title: "best-team project",
-    description: "project for my best-team",
+    title: "Best-team project",
+    description: "This is the Best Team Project",
     open: true,
     private: false,
     created: new Date("Jan 2, 2000"),
     updated: new Date("Dec 1, 2019"),
   },
   {
-    title: "my secret project",
-    description: "why did I make this a public project",
+    title: "Secret Project",
+    description: "Please don't look at this project",
     open: true,
     private: true,
     created: new Date("Jan 14, 2021"),
-    updated: new Date("Jan 15, 2021"),
+    updated: new Date("Jan 31, 2021"),
   },
   {
-    title: "Example1",
-    description: "THIS IS MY TRIAL TRIAL TRIAL",
+    title: "Top Secret Project",
+    description: "SECRET...",
     open: false,
     private: false,
     created: new Date("Dec 5, 2020"),
@@ -345,8 +345,9 @@ const repoBuilder = (taco) => {
   // printToDom("#repo", domString);
 };
 
-//functionality for search bar
 
+
+//functionality for search bar
 const searchAble = (repositories) => {
   const searchBar = document.querySelector("#searchBar");
   if (searchBar) {
@@ -404,10 +405,10 @@ const projectBuilder = (taco) => {
   taco.forEach((item, i) => {
     showDom += `<div class="container border border-white" id=${i}>
                   <div class="row">
-                    <div class="col-3 align-self-start">
+                    <div class="col-4 align-self-start">
                       ${item.title}
                     </div>
-                    <div class="col-7 align-self-start">
+                    <div class="col-6 align-self-start">
                       ${item.description}
                     </div>
                     <div id="editButton" class="col-1 dropdown align-self-end">
@@ -428,7 +429,7 @@ const projectBuilder = (taco) => {
                     Math.abs(new Date() - item.updated) / 1000 / 60 / 60
                   )} hours ago</i>
                   </div>
-                  <div class="col-5 align-self-start">
+                  <div class="col-6 align-self-start">
                   <i class="fas fa-grimace"></i> Created ${Math.floor(
                     Math.abs(new Date() - item.created) / 1000 / 60 / 60 / 24
                   )} days ago</i>
