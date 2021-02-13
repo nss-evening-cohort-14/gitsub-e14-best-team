@@ -414,7 +414,7 @@ const searchAble = (repositories) => {
   }
 };
 
-// packages builder
+// Packages builder
 const packageBuilder = (taco) => {
   let domString = "";
   taco.forEach((item, i) => {
@@ -424,6 +424,7 @@ const packageBuilder = (taco) => {
                       <h5 class="card-title">${item.name}</h5>
                       <p class="card-text">${item.description}</p>
                       <a href="${item.website}" class="btn btn-success">Learn More</a>
+                      <button type="button" class="btn btn-danger" >Remove</button>
                     </div>
                   </div>`;
   });
@@ -433,7 +434,7 @@ const packageBuilder = (taco) => {
     printToDom("#package", domString);
   }
 };
-// GRAB FORM INFO
+// Create package function
 const addPackage = (e) => {
   e.preventDefault();
   const name = document.querySelector('#formGroupExampleInput').value;
@@ -446,7 +447,18 @@ const addPackage = (e) => {
 
   packages.push(objs);
   packageBuilder(packages);
-}
+};
+
+// Delete Package function
+const deletePackage = (e) => {
+  const targetType = e.target.type;
+  const targetId = e.target.id;
+  if (targetType === "button"){
+    packages.splice(targetId, 1);
+  }
+  packageBuilder(packages);
+
+};
 
 //FUNCTION FOR OVERVIEW PAGE
 const isPinned = (e) => {
@@ -597,8 +609,12 @@ const handleButtonClick = () => {
     deleteTeamMember.addEventListener("click", deleteTeam);
     }
   const submitPackage = document.querySelector("#form");
-  if (submitPackage){
+  if (submitPackage) {
     submitPackage.addEventListener("click", addPackage);
+  }
+  const ifDeletePackage = document.querySelector("#package");
+  if(ifDeletePackage) {
+    ifDeletePackage.addEventListener("click", deletePackage);
   }
 };
 
