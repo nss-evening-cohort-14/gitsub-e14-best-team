@@ -585,6 +585,7 @@ const deletePackage = (e) => {
 };
 
 //FUNCTION FOR OVERVIEW PAGE
+
 const isPinned = (e) => {
   e.preventDefault();
   let buttonType = e.target.id;
