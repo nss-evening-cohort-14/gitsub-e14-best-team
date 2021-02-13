@@ -134,48 +134,48 @@ const team = [
 
 const projects = [
   {
-    title: "my-dream",
-    description: "My dream project",
+    title: "French Fries",
+    description: "My favorite french fries project",
     open: true,
     private: false,
     created: new Date("Aug 25, 2019"),
     updated: new Date("Feb 1, 2021"),
   },
   {
-    title: "best-breakfast",
-    description: "I just have to create my favorite breakfast list",
+    title: "Cheese Burger",
+    description: "This is my Cheese Burger project",
     open: true,
     private: false,
     created: new Date("Feb 3, 2018"),
-    updated: new Date("Mar 30, 2018"),
+    updated: new Date("Mar 30, 2019"),
   },
   {
-    title: "french fries",
-    description: "Who does not like french fries?",
+    title: "Ice Cream",
+    description: "Ice Cream project vol.3",
     open: true,
     private: false,
     created: new Date("May 29, 2018"),
     updated: new Date("Jul 15, 2020"),
   },
   {
-    title: "best-team project",
-    description: "project for my best-team",
+    title: "Best-team project",
+    description: "This is the Best Team Project",
     open: true,
     private: false,
     created: new Date("Jan 2, 2000"),
     updated: new Date("Dec 1, 2019"),
   },
   {
-    title: "my secret project",
-    description: "why did I make this a public project",
+    title: "Secret Project",
+    description: "Please don't look at this project",
     open: true,
     private: true,
     created: new Date("Jan 14, 2021"),
-    updated: new Date("Jan 15, 2021"),
+    updated: new Date("Jan 31, 2021"),
   },
   {
-    title: "Example1",
-    description: "THIS IS MY TRIAL TRIAL TRIAL",
+    title: "Top Secret Project",
+    description: "SECRET...",
     open: false,
     private: false,
     created: new Date("Dec 5, 2020"),
@@ -185,7 +185,7 @@ const projects = [
 
 const packages = [
   {
-    icon: "",
+    icon: "https://www.docker.com/sites/default/files/d8/styles/role_icon/public/2019-07/Moby-logo.png",
     name: "Docker",
     description:
       "The world's easiest way to create, manage, and deliver your teams' container applications. ",
@@ -193,7 +193,7 @@ const packages = [
   },
 
   {
-    icon: "",
+    icon: "http://maven.apache.org/images/logos/build-by-maven-black.png",
     name: "Apache Maven",
     description:
       "A default package manager used with Java and the Java runtime environment.",
@@ -201,7 +201,7 @@ const packages = [
   },
 
   {
-    icon: "",
+    icon: "https://www.nuget.org/Content/gallery/img/logo-og-600x600.png",
     name: "NuGet",
     description:
       "A package manager used with Microsoft platforms, including .NET.",
@@ -209,7 +209,7 @@ const packages = [
   },
 
   {
-    icon: "",
+    icon: "https://cdn.worldvectorlogo.com/logos/rubygems.svg",
     name: "RubyGems",
     description:
       "A standard format for distributing programs and libraries with Ruby",
@@ -217,7 +217,7 @@ const packages = [
   },
 
   {
-    icon: "",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg",
     name: "npm",
     description: "A package manager for JavaScript, included with Node.js.",
     website: "https://www.npmjs.com/",
@@ -333,10 +333,10 @@ const pinnedBuilder = (taco) => {
   taco.forEach((item, i) => {
     if (item.pinned === true) {
       let num = Math.floor(Math.random() * 100 + 1);
-      let num2 = Math.floor(Math.random() * 100 + 1);
-      pinnedCard += `<div class="card" style="width: 25rem;">
+      let num2 = Math.floor(Math.random() * 20 + 1);
+      pinnedCard += `<div class="card" style="width: 22rem;">
     <div class="card-body">
-    <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6>
+    <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6> 
       <p class="card-text">${item.description}.</p>
       <span class="mx-2"><i class="fas fa-circle mx-1" style="color: yellow"></i>Javascript</span>
       <span class="mx-2"><i class="far fa-star mx-1"></i>${num}</span>
@@ -398,8 +398,9 @@ const repoBuilder = (taco) => {
   // printToDom("#repo", domString);
 };
 
-//functionality for search bar
 
+
+//functionality for search bar
 const searchAble = (repositories) => {
   const searchBar = document.querySelector("#searchBar");
   if (searchBar) {
@@ -419,7 +420,7 @@ const packageBuilder = (taco) => {
   taco.forEach((item, i) => {
     domString += `<div class="card" style="width: 18rem;">
                     <div class="card-body">
-                      <img src="${item.icon}" alt="Package Icon" width="100" height="80"
+                      <img src="${item.icon}" alt="Package Icon" width="50" height="50"
                       <h5 class="card-title">${item.name}</h5>
                       <p class="card-text">${item.description}</p>
                       <a href="${item.website}" class="btn btn-success">Learn More</a>
@@ -433,6 +434,19 @@ const packageBuilder = (taco) => {
   }
 };
 // GRAB FORM INFO
+const addPackage = (e) => {
+  e.preventDefault();
+  const name = document.querySelector('#formGroupExampleInput').value;
+  const description = document.querySelector('#exampleFormControlTextarea1').value;
+
+  const objs = {
+    name,
+    description,
+  };
+
+  packages.push(objs);
+  packageBuilder(packages);
+}
 
 //FUNCTION FOR OVERVIEW PAGE
 const isPinned = (e) => {
@@ -441,7 +455,6 @@ const isPinned = (e) => {
   const makePinned = document.querySelector("#getPinned").value;
 
   if (buttonType === "submit-pin") {
-    console.log("submit");
     repositories.forEach((item, i) => {
       if (item.name === makePinned) {
         item.pinned = true;
@@ -451,16 +464,17 @@ const isPinned = (e) => {
   }
 };
 
+
 // Function for Projects page
 const projectBuilder = (taco) => {
   let showDom = "";
   taco.forEach((item, i) => {
     showDom += `<div class="container border border-white" id=${i}>
                   <div class="row">
-                    <div class="col-3 align-self-start">
+                    <div class="col-4 align-self-start">
                       ${item.title}
                     </div>
-                    <div class="col-7 align-self-start">
+                    <div class="col-6 align-self-start">
                       ${item.description}
                     </div>
                     <div id="editButton" class="col-1 dropdown align-self-end">
@@ -481,7 +495,7 @@ const projectBuilder = (taco) => {
                     Math.abs(new Date() - item.updated) / 1000 / 60 / 60
                   )} hours ago</i>
                   </div>
-                  <div class="col-5 align-self-start">
+                  <div class="col-6 align-self-start">
                   <i class="fas fa-grimace"></i> Created ${Math.floor(
                     Math.abs(new Date() - item.created) / 1000 / 60 / 60 / 24
                   )} days ago</i>
@@ -581,6 +595,10 @@ const handleButtonClick = () => {
   const deleteTeamMember = document.querySelector("#team-members");
   if (deleteTeamMember) {
     deleteTeamMember.addEventListener("click", deleteTeam);
+    }
+  const submitPackage = document.querySelector("#form");
+  if (submitPackage){
+    submitPackage.addEventListener("click", addPackage);
   }
 };
 
@@ -594,8 +612,8 @@ const init = () => {
   projectBuilder(projects);
   searchProject(projects);
   packageBuilder(packages);
-  handleButtonClick();
   searchAble(repositories);
+  handleButtonClick();
 };
 
 init();
