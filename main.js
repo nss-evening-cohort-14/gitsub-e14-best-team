@@ -406,10 +406,7 @@ const teamBuilder = (taco) => {
                     </div>
                   </div>`;
   });
-  const teamMembers = document.querySelector("#team-members");
-  if (teamMembers) {
-    printToDom("#team-members", domString);
-  }
+  printToDom("#team-members", domString);
 };
 
 // TEAM MEMBER GET FORM INFO
@@ -467,10 +464,7 @@ const pinnedBuilder = (taco) => {
   </div>`;
     }
   });
-  const pinnedRepoHouses = document.querySelector("#pinnedRepoHouse");
-  if (pinnedRepoHouses) {
-    printToDom("#pinnedRepoHouse", pinnedCard);
-  }
+  printToDom("#pinnedRepoHouse", pinnedCard);
 };
 
 
@@ -483,10 +477,7 @@ const populatePinned = (taco) => {
       pinnedText += `<option value=${item.name}>${item.name}</option>`;
     }
   });
-  const getPinned = document.querySelector("#getPinned");
-  if (getPinned) {
     printToDom("#getPinned", pinnedText);
-  }
 };
 
 const repoBuilder = (taco) => {
@@ -515,11 +506,7 @@ const repoBuilder = (taco) => {
   </div>
     `;
   });
-  const repo = document.querySelector("#repo");
-  if (repo) {
     printToDom("#repo", domString);
-  }
-  // printToDom("#repo", domString);
 };
 
 
@@ -552,11 +539,7 @@ const packageBuilder = (taco) => {
                     </div>
                   </div>`;
   });
-
-  const getPackages = document.querySelector("#package");
-  if (getPackages) {
-    printToDom("#package", domString);
-  }
+  printToDom("#package", domString);
 };
 // Create package function
 const addPackage = (e) => {
@@ -647,15 +630,11 @@ const projectBuilder = (taco) => {
                   </div>
                 </div>`;
   });
-  const showProjects = document.querySelector("#showProjects");
-  if (showProjects) {
     printToDom("#showProjects", showDom);
-  }
 };
 
 const searchProject = (projects) => {
   const searchBar = document.querySelector("#search-input");
-  if (searchBar) {
     searchBar.addEventListener("input", (e) => {
       const element = e.target.value.toLowerCase();
       const filteredProject = projects.filter((project) =>
@@ -663,7 +642,6 @@ const searchProject = (projects) => {
       );
       projectBuilder(filteredProject);
     });
-  }
 };
 
 //Function for projects page continue
@@ -720,47 +698,31 @@ const buttonFunc = (e) => {
   }
 };
 
-// BUTTON EVENTS
-const handleButtonClick = () => {
-  const submitPin = document.querySelector("#submit-pin");
-  if (submitPin) {
-    submitPin.addEventListener("click", isPinned);
-  }
-  const teamSubmit = document.querySelector("#team-form");
-  if (teamSubmit) {
-    teamSubmit.addEventListener("submit", getTeamInfo);
-  }
-  const projectSort = document.querySelector("#projectSort");
-  if (projectSort) {
-    projectSort.addEventListener("click", buttonFunc);
-  }
-  const showProject = document.querySelector("#showProjects");
-  if (showProject) {
-    showProject.addEventListener("click", buttonFunc);
-  }
-  const submitProject = document.querySelector("#submitProject");
-  if (submitProject) {
-    submitProject.addEventListener("click", getProjectInfo);
-  }
-  const closePin = document.querySelector('#pinnedRepoHouse');
-  if (closePin) {
-    closePin.addEventListener("click", isPinned); 
-  }
-  const deleteTeamMember = document.querySelector("#team-members");
-  if (deleteTeamMember) {
-    deleteTeamMember.addEventListener("click", deleteTeam);
-    }
-  const ifDeletePackage = document.querySelector("#package");
-  if(ifDeletePackage) {
-    ifDeletePackage.addEventListener("click", deletePackage);
-  }
-};
 
 const getPageLocation = () => {
   const pageName = location.pathname;
   if (pageName === "/packages.html"){
     packageBuilder(packages);
     document.querySelector("#form").addEventListener("click", addPackage);
+    document.querySelector("#package").addEventListener("click", deletePackage);
+  } else if (pageName === "/index.html") {
+    populatePinned(repositories);
+    pinnedBuilder(repositories);
+    document.querySelector("#submit-pin").addEventListener("click", isPinned);
+    document.querySelector('#pinnedRepoHouse').addEventListener("click", isPinned);
+  } else if (pageName === "/projects.html") {
+    projectBuilder(projects);
+    searchProject(projects);
+    document.querySelector("#projectSort").addEventListener("click", buttonFunc);
+    document.querySelector("#showProjects").addEventListener("click", buttonFunc);
+    document.querySelector("#submitProject").addEventListener("click", getProjectInfo);
+  } else if (pageName === "/team.html") {
+    teamBuilder(team);
+    document.querySelector("#team-form").addEventListener("submit", getTeamInfo);
+    document.querySelector("#team-members").addEventListener("click", deleteTeam);
+  } else if (pageName === "/repo.html") {
+    repoBuilder(repositories);
+    searchAble(repositories);
   }
 };
 
@@ -770,14 +732,6 @@ const init = () => {
   navBuilder();
   footerBuilder();
   userBuilder(users);
-  teamBuilder(team);
-  populatePinned(repositories);
-  pinnedBuilder(repositories);
-  repoBuilder(repositories);
-  projectBuilder(projects);
-  searchProject(projects);
-  searchAble(repositories);
-  handleButtonClick();
 };
 
 init();
