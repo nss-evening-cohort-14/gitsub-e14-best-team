@@ -53,7 +53,7 @@ input[type=text]:focus, input[type=url]:focus, textarea:focus  {
   margin: auto;
 }
 
-button {
+#choosePin {
   margin-top: 25px;
 }
 
@@ -93,7 +93,7 @@ button {
 
  #unpin {
    position: absolute;
-   bottom: 5px;
+   top: 5px;
    right: 5px;
    
  }
