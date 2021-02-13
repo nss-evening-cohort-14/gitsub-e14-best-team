@@ -75,12 +75,14 @@ const repositories = [
   },
 ];
 
+// ARRAY FOR TEAM PAGE
 const team = [
   {
     name: "Kat Siren",
     username: "katsiren55",
     website: "aboutkatsiren.com",
     twitter: "Koffee&Kat",
+    linkedin: "Kat Professional",
     imageUrl: "images/katy-logo.png",
   },
   {
@@ -88,6 +90,7 @@ const team = [
     username: "robertncole1",
     website: "https://robcolecreative.com",
     twitter: "none",
+    linkedin: "robertncole",
     imageUrl:
       "https://avatars.githubusercontent.com/u/76854545?s=460&u=f5424c7a737a6e847fb0415886a6857f56f15bc7&v=4",
   },
@@ -96,8 +99,36 @@ const team = [
     username: "username",
     website: "https://saraiscool.com",
     twitter: "saraschoon",
+    linkedin: "saraschoonover",
     imageUrl:
       "https://avatars.githubusercontent.com/u/25774314?s=460&u=f02c0b3ec9ec2c2cf3ed4ecae25d6d793048f020&v=4",
+  },
+  {
+    name: "Katy Fry",
+    username: "katherinevfry",
+    website: "https://katyisalsocool.com",
+    twitter: "katytweets",
+    linkedin: "katyfry",
+    imageUrl:
+      "https://avatars.githubusercontent.com/u/76188832?s=460&u=fb1aebf589c5e439050bf5fb06e3da7f5461cce9&v=4",
+  },
+  {
+    name: "Chie Stroud",
+    username: "chiestroud",
+    website: "https://chieisawesome.com",
+    twitter: "chietweetstoo",
+    linkedin: "chiestroud",
+    imageUrl:
+      "https://avatars.githubusercontent.com/u/68720317?s=460&u=e4b1e68066942f150a3ebe9aa8ed3cc911923742&v=4",
+  },
+  {
+    name: "Jim Conner",
+    username: "jim-conner",
+    website: "https://jimisfantastic.com",
+    twitter: "jimtweets",
+    linkedin: "jimconner",
+    imageUrl:
+      "https://avatars.githubusercontent.com/u/76793747?s=460&u=c9f5e6bf6e28cbf0994456535f2a7fa8aa6aa313&v=4",
   },
 ];
 
@@ -228,18 +259,28 @@ const teamBuilder = (taco) => {
   let domString = "";
   taco.forEach((item, i) => {
     domString += `<div class="card mb-3">
-                    <div class="row g-0">
-                      <div class="col-md-4">
+                    <div class="row">
+                      <div class="col-md-4" id="team-member-col" >
                         <img class="team-member" src="${item.imageUrl}" alt="kat siren logo">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title">${item.name}</h5>
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><i class="fas fa-user"></i>  ${item.username}</li>
-                            <li class="list-group-item"><i class="fas fa-link"></i>  ${item.website}</li>
-                            <li class="list-group-item"><i class="fab fa-twitter"></i>  ${item.twitter}</li>
-                          </ul>
+                          <div class="row">
+                            <div class="col">
+                              <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-user"></i>  ${item.username}</li>
+                                <li class="list-group-item"><i class="fab fa-twitter"></i>  ${item.twitter}</li>
+                              </ul>
+                            </div>
+                            <div class="col">
+                              <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-link"></i>  ${item.website}</li>
+                                <li class="list-group-item"><i class="fab fa-linkedin-in"></i>  ${item.linkedin}</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <button type="button" class="btn btn-danger" id="${i}">Delete</button>
                         </div>
                       </div>
                     </div>
@@ -259,12 +300,14 @@ const getTeamInfo = (e) => {
   const website = document.querySelector("#website").value;
   const twitter = document.querySelector("#twitter").value;
   const imageUrl = document.querySelector("#imageUrl").value;
+  const linkedin = document.querySelector("#linkedin").value;
 
   const obj = {
     name,
     username,
     website,
     twitter,
+    linkedin,
     imageUrl,
   };
 
@@ -272,6 +315,16 @@ const getTeamInfo = (e) => {
   teamBuilder(team);
 
   document.querySelector("form").reset();
+};
+
+// TEAM MEMBER DELETE FUNCTION
+const deleteTeam = (e) => {
+  const targetType = e.target.type;
+  const targetId = e.target.id;
+  if (targetType === "button") {
+    team.splice(targetId, 1);
+  }
+  teamBuilder(team);
 };
 
 // FUNCTION FOR OVERVIEW PAGE
@@ -539,6 +592,10 @@ const handleButtonClick = () => {
   if (submitProject) {
     submitProject.addEventListener("click", getProjectInfo);
   }
+  const deleteTeamMember = document.querySelector("#team-members");
+  if (deleteTeamMember) {
+    deleteTeamMember.addEventListener("click", deleteTeam);
+    }
   const submitPackage = document.querySelector("#form");
   if (submitPackage){
     submitPackage.addEventListener("click", addPackage);
