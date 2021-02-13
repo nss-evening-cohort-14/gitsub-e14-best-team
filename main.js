@@ -339,10 +339,9 @@ const pinnedBuilder = (taco) => {
       let num = Math.floor(Math.random() * 100 + 1);
       let num2 = Math.floor(Math.random() * 20 + 1);
       pinnedCard += `<div class="card" style="width: 22rem;">
+     <span id="unpin"><button type="button" class="btn-close btn-close-white" aria-label="Close" id="unpin--${item.id}">
+</button></span>
     <div class="card-body">
-    <button type="button" class="close" aria-label="Close" id="${item.id}">
-  <span aria-hidden="true" id="${item.id}">&times;</span>
-</button>
     <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6> 
       <p class="card-text">${item.description}.</p>
       <span class="mx-2"><i class="fas fa-circle mx-1" style="color: yellow"></i>Javascript</span>
@@ -462,7 +461,6 @@ const isPinned = (e) => {
   e.preventDefault();
   let buttonType = e.target.id;
   const makePinned = document.querySelector("#getPinned").value;
-
   if (buttonType === "submit-pin") {
     repositories.forEach((item, i) => {
       if (item.name === makePinned) {
@@ -471,8 +469,11 @@ const isPinned = (e) => {
     });
     pinnedBuilder(repositories);
   } 
-  if (buttonType === typeof number) {
-    console.log("number")
+  if (buttonType.includes("unpin")) {
+    const id = Number(buttonType.split("--")[1])
+    const findRepo = repositories.find(repo => repo.id === id)
+    findRepo.pinned = false
+    pinnedBuilder(repositories);
   }
 };
 
