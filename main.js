@@ -35,6 +35,7 @@ const repositories = [
     issues: " 1 issue needs help",
     updated: " Updated",
     pinned: true,
+    id: 1,
   },
   {
     name: "how-many-days-until",
@@ -47,6 +48,7 @@ const repositories = [
     issues: 33,
     updated: " Updated 19 days ago",
     pinned: true,
+    id: 2,
   },
   {
     name: "httiriri",
@@ -59,6 +61,7 @@ const repositories = [
     issues: "4 issues need help ",
     updated: " Updated 27 days ago",
     pinned: false,
+    id: 3,
   },
   {
     name: "ambition-fund-website",
@@ -72,6 +75,7 @@ const repositories = [
     issues: "3 issues need help ",
     updated: " Updated Dec 12, 2020",
     pinned: false,
+    id: 4,
   },
 ];
 
@@ -283,6 +287,9 @@ const pinnedBuilder = (taco) => {
       let num2 = Math.floor(Math.random() * 20 + 1);
       pinnedCard += `<div class="card" style="width: 22rem;">
     <div class="card-body">
+    <button type="button" class="close" aria-label="Close" id="${item.id}">
+  <span aria-hidden="true" id="${item.id}">&times;</span>
+</button>
     <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6> 
       <p class="card-text">${item.description}.</p>
       <span class="mx-2"><i class="fas fa-circle mx-1" style="color: yellow"></i>Javascript</span>
@@ -297,6 +304,8 @@ const pinnedBuilder = (taco) => {
     printToDom("#pinnedRepoHouse", pinnedCard);
   }
 };
+
+
 
 //POPULATE OVERVIEW FORM DROPDOWN
 const populatePinned = (taco) => {
@@ -391,9 +400,12 @@ const isPinned = (e) => {
     repositories.forEach((item, i) => {
       if (item.name === makePinned) {
         item.pinned = true;
-      }
+      } 
     });
     pinnedBuilder(repositories);
+  } 
+  if (buttonType === typeof number) {
+    console.log("number")
   }
 };
 
@@ -524,6 +536,10 @@ const handleButtonClick = () => {
   const submitProject = document.querySelector("#submitProject");
   if (submitProject) {
     submitProject.addEventListener("click", getProjectInfo);
+  }
+  const closePin = document.querySelector('#pinnedRepoHouse');
+  if (closePin) {
+    closePin.addEventListener("click", isPinned);
   }
 };
 
