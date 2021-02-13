@@ -144,6 +144,7 @@ const projects = [
     private: false,
     created: new Date("Aug 25, 2019"),
     updated: new Date("Feb 1, 2021"),
+    id: 0,
   },
   {
     title: "Cheese Burger",
@@ -152,6 +153,7 @@ const projects = [
     private: false,
     created: new Date("Feb 3, 2018"),
     updated: new Date("Mar 30, 2019"),
+    id: 1,
   },
   {
     title: "Ice Cream",
@@ -160,6 +162,7 @@ const projects = [
     private: false,
     created: new Date("May 29, 2018"),
     updated: new Date("Jul 15, 2020"),
+    id: 2,
   },
   {
     title: "Best-team project",
@@ -168,6 +171,7 @@ const projects = [
     private: false,
     created: new Date("Jan 2, 2000"),
     updated: new Date("Dec 1, 2019"),
+    id: 3,
   },
   {
     title: "Secret Project",
@@ -176,6 +180,7 @@ const projects = [
     private: true,
     created: new Date("Jan 14, 2021"),
     updated: new Date("Jan 31, 2021"),
+    id: 4,
   },
   {
     title: "Top Secret Project",
@@ -184,6 +189,7 @@ const projects = [
     private: false,
     created: new Date("Dec 5, 2020"),
     updated: new Date("Jan 1, 2021"),
+    id: 5,
   },
 ];
 
@@ -606,7 +612,7 @@ const projectBuilder = (taco) => {
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" id="editProject" href="#">Edit File</a></li>
-                        <li><a class="dropdown-item" id="closeProject" href="#">Close Project</a></li>
+                        <li><a class="dropdown-item" id="closeProject--${item.id}" href="#">Close Project</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" id="setting" href="#">Setting</a></li>
                       </ul>
@@ -614,9 +620,9 @@ const projectBuilder = (taco) => {
                   </div>
                   <div class="row">
                   <div class="col-4 align-self-start">
-                  <i class="far fa-clock fs-6"> Updated ${Math.floor(
+                  <i class="far fa-clock fs-6"></i> Updated ${Math.floor(
                     Math.abs(new Date() - item.updated) / 1000 / 60 / 60
-                  )} hours ago</i>
+                  )} hours ago
                   </div>
                   <div class="col-6 align-self-start">
                   <i class="fas fa-grimace"></i> Created ${Math.floor(
@@ -669,10 +675,16 @@ const buttonFunc = (e) => {
   if (targetId === "editProject") {
     document.querySelector(
       "#showSecret"
-    ).innerHTML = `<p>This page is under construction</p>`;
-  } else if (targetId === "closeProject") {
+    ).innerHTML = `<p class="text-warning fw-bold">This page is under construction</p>`;
+  } else if (targetId.includes("closeProject")) {
+    const id = Number(targetId.split("--")[1])
+    const findProj = projects.find(projects => projects.id === id)
+    document.querySelector(
+      "#showSecret"
+    ).innerHTML = `<p class="text-warning fw-bold">Congratulations! You closed ${findProj.title} project</p>`;
     projects.splice(targetId, 1);
     projectBuilder(projects);
+    
   } else if (targetId === "setting") {
     const question = prompt("Do you want to go to setting page?");
     alert(`${question} is not the right answer to go to the setting`);
