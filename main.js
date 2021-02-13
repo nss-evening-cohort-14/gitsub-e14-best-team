@@ -35,6 +35,7 @@ const repositories = [
     issues: " 1 issue needs help",
     updated: " Updated",
     pinned: true,
+    id: 1,
   },
   {
     name: "how-many-days-until",
@@ -47,6 +48,7 @@ const repositories = [
     issues: 33,
     updated: " Updated 19 days ago",
     pinned: true,
+    id: 2,
   },
   {
     name: "httiriri",
@@ -59,6 +61,7 @@ const repositories = [
     issues: "4 issues need help ",
     updated: " Updated 27 days ago",
     pinned: false,
+    id: 3,
   },
   {
     name: "ambition-fund-website",
@@ -72,6 +75,7 @@ const repositories = [
     issues: "3 issues need help ",
     updated: " Updated Dec 12, 2020",
     pinned: false,
+    id: 4,
   },
 ];
 
@@ -335,6 +339,8 @@ const pinnedBuilder = (taco) => {
       let num = Math.floor(Math.random() * 100 + 1);
       let num2 = Math.floor(Math.random() * 20 + 1);
       pinnedCard += `<div class="card" style="width: 22rem;">
+     <span id="unpin"><button type="button" class="btn-close btn-close-white" aria-label="Close" id="unpin--${item.id}">
+</button></span>
     <div class="card-body">
     <h6 class="card-title pinned-card"><i class="far fa-bookmark" style="color: lightgray"></i>${item.name}</h6> 
       <p class="card-text">${item.description}.</p>
@@ -350,6 +356,8 @@ const pinnedBuilder = (taco) => {
     printToDom("#pinnedRepoHouse", pinnedCard);
   }
 };
+
+
 
 //POPULATE OVERVIEW FORM DROPDOWN
 const populatePinned = (taco) => {
@@ -453,13 +461,18 @@ const isPinned = (e) => {
   e.preventDefault();
   let buttonType = e.target.id;
   const makePinned = document.querySelector("#getPinned").value;
-
   if (buttonType === "submit-pin") {
     repositories.forEach((item, i) => {
       if (item.name === makePinned) {
         item.pinned = true;
-      }
+      } 
     });
+    pinnedBuilder(repositories);
+  } 
+  if (buttonType.includes("unpin")) {
+    const id = Number(buttonType.split("--")[1])
+    const findRepo = repositories.find(repo => repo.id === id)
+    findRepo.pinned = false
     pinnedBuilder(repositories);
   }
 };
@@ -591,6 +604,10 @@ const handleButtonClick = () => {
   const submitProject = document.querySelector("#submitProject");
   if (submitProject) {
     submitProject.addEventListener("click", getProjectInfo);
+  }
+  const closePin = document.querySelector('#pinnedRepoHouse');
+  if (closePin) {
+    closePin.addEventListener("click", isPinned); 
   }
   const deleteTeamMember = document.querySelector("#team-members");
   if (deleteTeamMember) {
