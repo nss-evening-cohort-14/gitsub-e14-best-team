@@ -144,7 +144,7 @@ const projects = [
     private: false,
     created: new Date("Aug 25, 2019"),
     updated: new Date("Feb 1, 2021"),
-    id: 0,
+    id: Math.floor(Math.random() * 10000),
   },
   {
     title: "Cheese Burger",
@@ -153,7 +153,7 @@ const projects = [
     private: false,
     created: new Date("Feb 3, 2018"),
     updated: new Date("Mar 30, 2019"),
-    id: 1,
+    id: Math.floor(Math.random() * 10000),
   },
   {
     title: "Ice Cream",
@@ -162,7 +162,7 @@ const projects = [
     private: false,
     created: new Date("May 29, 2018"),
     updated: new Date("Jul 15, 2020"),
-    id: 2,
+    id: Math.floor(Math.random() * 10000),
   },
   {
     title: "Best-team project",
@@ -171,7 +171,7 @@ const projects = [
     private: false,
     created: new Date("Jan 2, 2000"),
     updated: new Date("Dec 1, 2019"),
-    id: 3,
+    id: Math.floor(Math.random() * 10000),
   },
   {
     title: "Secret Project",
@@ -180,7 +180,7 @@ const projects = [
     private: true,
     created: new Date("Jan 14, 2021"),
     updated: new Date("Jan 31, 2021"),
-    id: 4,
+    id: Math.floor(Math.random() * 10000),
   },
   {
     title: "Top Secret Project",
@@ -189,7 +189,7 @@ const projects = [
     private: false,
     created: new Date("Dec 5, 2020"),
     updated: new Date("Jan 1, 2021"),
-    id: 5,
+    id: Math.floor(Math.random() * 10000),
   },
 ];
 
@@ -651,11 +651,13 @@ const getProjectInfo = (e) => {
   const description = document.querySelector("#projectDetails").value;
   const updated = new Date();
   const created = new Date();
+  const id = Math.floor(Math.random() * 10000);
   const obj = {
     title,
     description,
     updated,
     created,
+    id,
   };
   projects.push(obj);
   projectBuilder(projects);
