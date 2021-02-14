@@ -195,7 +195,8 @@ const projects = [
 
 const packages = [
   {
-    icon: "https://www.docker.com/sites/default/files/d8/styles/role_icon/public/2019-07/Moby-logo.png",
+    icon:
+      "https://www.docker.com/sites/default/files/d8/styles/role_icon/public/2019-07/Moby-logo.png",
     name: "Docker",
     description:
       "The world's easiest way to create, manage, and deliver your teams' container applications. ",
@@ -279,7 +280,7 @@ const navBuilder = (taco) => {
   </div>
 </nav>`;
   printToDom("#navbar", domString);
-}
+};
 
 // FOOTER BUILDER
 const footerBuilder = (taco) => {
@@ -348,7 +349,7 @@ const footerBuilder = (taco) => {
   </div>
 </footer>`;
   printToDom("#footer", domString);
-}
+};
 
 // CARD BUILDER
 const userBuilder = (taco) => {
@@ -467,8 +468,6 @@ const pinnedBuilder = (taco) => {
   printToDom("#pinnedRepoHouse", pinnedCard);
 };
 
-
-
 //POPULATE OVERVIEW FORM DROPDOWN
 const populatePinned = (taco) => {
   let pinnedText = "";
@@ -477,7 +476,7 @@ const populatePinned = (taco) => {
       pinnedText += `<option value=${item.name}>${item.name}</option>`;
     }
   });
-    printToDom("#getPinned", pinnedText);
+  printToDom("#getPinned", pinnedText);
 };
 
 const repoBuilder = (taco) => {
@@ -506,10 +505,8 @@ const repoBuilder = (taco) => {
   </div>
     `;
   });
-    printToDom("#repo", domString);
+  printToDom("#repo", domString);
 };
-
-
 
 //functionality for search bar
 const searchAble = (repositories) => {
@@ -544,8 +541,9 @@ const packageBuilder = (taco) => {
 // Create package function
 const addPackage = (e) => {
   e.preventDefault();
-  const name = document.querySelector('#formGroupExampleInput').value;
-  const description = document.querySelector('#exampleFormControlTextarea1').value;
+  const name = document.querySelector("#formGroupExampleInput").value;
+  const description = document.querySelector("#exampleFormControlTextarea1")
+    .value;
 
   const objs = {
     name,
@@ -560,11 +558,10 @@ const addPackage = (e) => {
 const deletePackage = (e) => {
   const targetType = e.target.type;
   const targetId = e.target.id;
-  if (targetType === "button"){
+  if (targetType === "button") {
     packages.splice(targetId, 1);
   }
   packageBuilder(packages);
-
 };
 
 //FUNCTION FOR OVERVIEW PAGE
@@ -577,20 +574,19 @@ const isPinned = (e) => {
     repositories.forEach((item, i) => {
       if (item.name === makePinned) {
         item.pinned = true;
-      } 
+      }
     });
     pinnedBuilder(repositories);
     populatePinned(repositories);
-  } 
+  }
   if (buttonType.includes("unpin")) {
-    const id = Number(buttonType.split("--")[1])
-    const findRepo = repositories.find(repo => repo.id === id)
-    findRepo.pinned = false
+    const id = Number(buttonType.split("--")[1]);
+    const findRepo = repositories.find((repo) => repo.id === id);
+    findRepo.pinned = false;
     pinnedBuilder(repositories);
     populatePinned(repositories);
   }
 };
-
 
 // Function for Projects page
 const projectBuilder = (taco) => {
@@ -610,7 +606,9 @@ const projectBuilder = (taco) => {
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" id="editProject" href="#">Edit File</a></li>
-                        <li><a class="dropdown-item" id="closeProject--${item.id}" href="#">Close Project</a></li>
+                        <li><a class="dropdown-item" id="closeProject--${
+                          item.id
+                        }" href="#">Close Project</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" id="setting" href="#">Setting</a></li>
                       </ul>
@@ -630,18 +628,18 @@ const projectBuilder = (taco) => {
                   </div>
                 </div>`;
   });
-    printToDom("#showProjects", showDom);
+  printToDom("#showProjects", showDom);
 };
 
 const searchProject = (projects) => {
   const searchBar = document.querySelector("#search-input");
-    searchBar.addEventListener("input", (e) => {
-      const element = e.target.value.toLowerCase();
-      const filteredProject = projects.filter((project) =>
-        project.title.toLowerCase().includes(element)
-      );
-      projectBuilder(filteredProject);
-    });
+  searchBar.addEventListener("input", (e) => {
+    const element = e.target.value.toLowerCase();
+    const filteredProject = projects.filter((project) =>
+      project.title.toLowerCase().includes(element)
+    );
+    projectBuilder(filteredProject);
+  });
 };
 
 //Function for projects page continue
@@ -670,14 +668,13 @@ const buttonFunc = (e) => {
       "#showSecret"
     ).innerHTML = `<p class="text-warning fw-bold">This page is under construction</p>`;
   } else if (targetId.includes("closeProject")) {
-    const id = Number(targetId.split("--")[1])
-    const findProj = projects.find(projects => projects.id === id)
+    const id = Number(targetId.split("--")[1]);
+    const findProj = projects.find((projects) => projects.id === id);
     document.querySelector(
       "#showSecret"
     ).innerHTML = `<p class="text-warning fw-bold">Congratulations! You closed ${findProj.title} project</p>`;
     projects.splice(targetId, 1);
     projectBuilder(projects);
-    
   } else if (targetId === "setting") {
     const question = prompt("Do you want to go to setting page?");
     alert(`${question} is not the right answer to go to the setting`);
@@ -697,11 +694,36 @@ const buttonFunc = (e) => {
     projectBuilder(projects);
   }
 };
+//Function for repo page
+const createRepoForm = (e) => {
+  e.preventDefault();
+  const name = document.querySelector("#repoName").value;
+  const description = document.querySelector("#description").value;
+  const language = "Javascript";
+  const starsNumber = 8;
+  const mit = 3;
+  const issues = "1 issue needs help";
+  const updated = "Updated";
 
+  const obj = {
+    name,
+    description,
+    language,
+    starsNumber,
+    mit,
+    issues,
+    updated,
+  };
+
+  repositories.push(obj);
+  repoBuilder(repositories);
+
+  document.querySelector("form").reset();
+};
 
 const getPageLocation = () => {
   const pageName = location.pathname;
-  if (pageName === "/packages.html"){
+  if (pageName === "/packages.html") {
     packageBuilder(packages);
     document.querySelector("#form").addEventListener("click", addPackage);
     document.querySelector("#package").addEventListener("click", deletePackage);
@@ -709,7 +731,7 @@ const getPageLocation = () => {
     populatePinned(repositories);
     pinnedBuilder(repositories);
     document.querySelector("#submit-pin").addEventListener("click", isPinned);
-    document.querySelector('#pinnedRepoHouse').addEventListener("click", isPinned);
+    document.querySelector("#pinnedRepoHouse").addEventListener("click", isPinned);
   } else if (pageName === "/projects.html") {
     projectBuilder(projects);
     searchProject(projects);
@@ -723,6 +745,7 @@ const getPageLocation = () => {
   } else if (pageName === "/repo.html") {
     repoBuilder(repositories);
     searchAble(repositories);
+    document.querySelector("#create-button").addEventListener("click", createRepoForm);
   }
 };
 
