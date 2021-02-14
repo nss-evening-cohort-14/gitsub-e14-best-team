@@ -530,13 +530,16 @@ const packageBuilder = (taco) => {
   let domString = "";
   taco.forEach((item, i) => {
     domString += `<div class="card" style="width: 18rem;">
+                      <h5 class="card-title">
+                      <img src="${item.icon}" alt="Package Icon" width="50" height="50">
+                        ${item.name}</h5>
                     <div class="card-body">
-                      <img src="${item.icon}" alt="Package Icon" width="50" height="50"
-                      <h5 class="card-title">${item.name}</h5>
                       <p class="card-text">${item.description}</p>
                       <a href="${item.website}" class="btn btn-success">Learn More</a>
-                      <button type="button" class="btn btn-danger" >Remove</button>
-                    </div>
+                      </div>
+                      <button id="unpin" type="button" class="btn-close btn-close-white" 
+                      aria-label="Close" title="Delete Package">
+                      </button>
                   </div>`;
   });
   printToDom("#package", domString);
@@ -546,8 +549,10 @@ const addPackage = (e) => {
   e.preventDefault();
   const name = document.querySelector('#formGroupExampleInput').value;
   const description = document.querySelector('#exampleFormControlTextarea1').value;
+  const icon = "images/katy-logo.png";
 
   const objs = {
+    icon,
     name,
     description,
   };
