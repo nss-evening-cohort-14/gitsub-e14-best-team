@@ -568,8 +568,19 @@ const deletePackage = (e) => {
   packageBuilder(packages);
 };
 
-//FUNCTION FOR OVERVIEW PAGE
+// package search function
+const searchPackage = (packages) => {
+  const searchField = document.querySelector("#search-packages");
+  searchField.addEventListener("input", (e) => {
+    const targetingField = e.target.value.toLowerCase();
+    const filteredPackages = packages.filter((package) =>
+      package.name.toLowerCase().includes(targetingField)
+    );
+    packageBuilder(filteredPackages);
+  });
+};
 
+//FUNCTION FOR OVERVIEW PAGE
 const isPinned = (e) => {
   e.preventDefault();
   let buttonType = e.target.id;
@@ -731,6 +742,7 @@ const getPageLocation = () => {
   const pageName = location.pathname;
   if (pageName === "/packages.html") {
     packageBuilder(packages);
+    searchPackage(packages);
     document.querySelector("#form").addEventListener("click", addPackage);
     document.querySelector("#package").addEventListener("click", deletePackage);
   } else if (pageName === "/index.html") {
