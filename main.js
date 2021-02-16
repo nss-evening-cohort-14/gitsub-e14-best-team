@@ -482,7 +482,7 @@ const populatePinned = (taco) => {
 const repoBuilder = (taco) => {
   domString = "";
   taco.forEach((item, i) => {
-    domString += `<div class="card" style="height: 10em width: 18rem; id=${i}">
+    domString += `<div class="card" style="height: 10em width: 18rem;>
     <div class="card-body">
       <h5 class="card-title" id='card-title'>${item.name}</h5>
       <p class="card-text" id="card-text">${item.description}</p>
@@ -505,7 +505,7 @@ const repoBuilder = (taco) => {
   </div>
     `;
   });
-  printToDom("#repo", domString);
+  printToDom("#repo-area", domString);
 };
 
 //functionality for search bar
